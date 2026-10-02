@@ -1,0 +1,2517 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<meta name="theme-color" content="#0B5FFF" />
+<title>J-Eo Future — Shop • Recharge • Earn</title>
+<style>
+:root{
+  --blue:#0B5FFF;--blue-2:#0847C4;--blue-soft:#E8F0FF;
+  --bg:#F4F7FC;--card:#FFFFFF;--card-2:#F8FAFF;
+  --text:#0F172A;--muted:#64748B;--border:#E5EAF3;
+  --success:#16A34A;--warn:#F59E0B;--danger:#DC2626;
+  --r:16px;--shadow:0 2px 12px rgba(15,23,42,.06);
+  --shadow-lg:0 10px 30px rgba(11,95,255,.18);--nav-h:66px;
+}
+[data-theme="dark"]{
+  --blue:#3B82F6;--blue-2:#2563EB;--blue-soft:#16233D;
+  --bg:#080E1A;--card:#111A2B;--card-2:#162034;
+  --text:#E9EFFA;--muted:#8FA1BC;--border:#1E2A42;
+  --shadow:0 2px 12px rgba(0,0,0,.4);--shadow-lg:0 10px 30px rgba(0,0,0,.5);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;padding:0;font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,'Noto Sans Bengali',sans-serif;
+  background:var(--bg);color:var(--text);transition:background .25s,color .25s;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+button{cursor:pointer}
+a{color:var(--blue);text-decoration:none}
+.hidden{display:none !important}
+.row{display:flex;align-items:center}
+.gap8{gap:8px}.gap12{gap:12px}
+.grow{flex:1;min-width:0}
+.muted{color:var(--muted)}
+.small{font-size:12.5px}
+.tiny{font-size:11.5px}
+.ellipsis{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+#root{max-width:560px;margin:0 auto;min-height:100dvh;position:relative;background:var(--bg)}
+
+#splash{position:fixed;inset:0;z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  background:linear-gradient(160deg,#0B5FFF 0%,#062E86 100%);color:#fff;transition:opacity .35s,visibility .35s;max-width:560px;margin:0 auto}
+#splash.hide{opacity:0;visibility:hidden}
+.splash-logo{width:96px;height:96px;border-radius:26px;background:rgba(255,255,255,.14);display:grid;place-items:center;
+  font-weight:800;font-size:30px;border:1px solid rgba(255,255,255,.25);animation:pop .6s}
+@keyframes pop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+.splash-name{font-size:26px;font-weight:800}
+.splash-tag{font-size:13.5px;opacity:.85}
+.splash-loader{margin-top:18px;width:34px;height:34px;border-radius:50%;border:3px solid rgba(255,255,255,.25);
+  border-top-color:#fff;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.btn{width:100%;border:0;border-radius:14px;padding:15px 16px;font-size:15.5px;font-weight:700;background:var(--blue);color:#fff;
+  transition:transform .12s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn:active{transform:scale(.985)}
+.btn:disabled{opacity:.55;pointer-events:none}
+.btn.ghost{background:transparent;color:var(--text);border:1.5px solid var(--border)}
+.btn.soft{background:var(--blue-soft);color:var(--blue)}
+.btn.danger{background:var(--danger)}
+.btn.loading{position:relative;color:transparent !important}
+.btn.loading::after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;
+  border:2.5px solid rgba(255,255,255,.4);border-top-color:#fff;animation:spin .7s linear infinite}
+.icon-btn{width:40px;height:40px;border-radius:12px;border:0;background:transparent;display:grid;place-items:center;color:var(--text)}
+.icon-btn:active{background:var(--blue-soft)}
+.ic{width:22px;height:22px}.ic-sm{width:18px;height:18px}.ic-lg{width:26px;height:26px}
+
+.field{display:flex;align-items:center;gap:10px;background:var(--card);border:1.5px solid var(--border);
+  border-radius:14px;padding:13px 14px;margin-bottom:12px}
+.field:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-soft)}
+.field .ic{color:var(--muted);flex:none}
+.field input,.field select,.field textarea{border:0;outline:0;background:transparent;flex:1;min-width:0;font-size:15px}
+.field textarea{resize:none;min-height:74px;line-height:1.5}
+.field input::placeholder,.field textarea::placeholder{color:var(--muted)}
+.field-label{font-size:13px;font-weight:600;margin:0 0 6px 4px;color:var(--muted)}
+.err-text{color:var(--danger);font-size:12.5px;margin:-6px 0 10px 6px}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow)}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin:20px 0 10px}
+.section-head h3{margin:0;font-size:16px;font-weight:800}
+.section-head a{font-size:13px;font-weight:600;color:var(--blue)}
+
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:999px;font-size:11px;font-weight:700}
+.badge.pending{background:rgba(245,158,11,.15);color:#B45309}
+.badge.processing{background:rgba(59,130,246,.15);color:#1D4ED8}
+.badge.delivery{background:rgba(139,92,246,.15);color:#6D28D9}
+.badge.successful{background:rgba(22,163,74,.15);color:#15803D}
+.badge.cancelled{background:rgba(220,38,38,.15);color:#B91C1C}
+[data-theme="dark"] .badge.pending{color:#FBBF24}
+[data-theme="dark"] .badge.processing{color:#60A5FA}
+[data-theme="dark"] .badge.delivery{color:#A78BFA}
+[data-theme="dark"] .badge.successful{color:#4ADE80}
+[data-theme="dark"] .badge.cancelled{color:#F87171}
+
+.empty{display:flex;flex-direction:column;align-items:center;gap:10px;padding:48px 20px;text-align:center;color:var(--muted)}
+.empty svg{width:52px;height:52px;opacity:.35}
+.empty b{color:var(--text);font-size:15px}
+.empty p{margin:0;font-size:13px;line-height:1.6;max-width:280px}
+
+.skeleton{background:linear-gradient(90deg,var(--border) 25%,var(--card-2) 37%,var(--border) 63%);
+  background-size:400% 100%;animation:sk 1.3s ease infinite;border-radius:10px}
+@keyframes sk{0%{background-position:100% 50%}100%{background-position:0 50%}}
+
+.auth-screen{min-height:100dvh;padding:calc(38px + env(safe-area-inset-top)) 22px calc(30px + env(safe-area-inset-bottom));
+  display:flex;flex-direction:column;background:var(--bg)}
+.auth-logo{width:74px;height:74px;border-radius:22px;background:var(--blue);color:#fff;display:grid;place-items:center;
+  font-weight:800;font-size:22px;margin:0 auto 14px;box-shadow:var(--shadow-lg)}
+.auth-title{font-size:23px;font-weight:800;text-align:center;margin:0 0 6px}
+.auth-sub{text-align:center;color:var(--muted);font-size:13.5px;margin:0 0 26px}
+.divider{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:12.5px;margin:18px 0}
+.divider::before,.divider::after{content:"";height:1px;background:var(--border);flex:1}
+.auth-foot{margin-top:auto;padding-top:22px;text-align:center;font-size:13.5px;color:var(--muted)}
+.auth-foot b{color:var(--blue);cursor:pointer}
+.link-row{display:flex;justify-content:space-between;align-items:center;margin-top:-2px}
+.link-row a{font-size:13px;font-weight:600;color:var(--blue);cursor:pointer}
+.support-link{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:26px;color:var(--blue);font-size:13.5px;font-weight:600;cursor:pointer}
+
+#app{padding-bottom:calc(var(--nav-h) + 20px + env(safe-area-inset-bottom))}
+.page{padding:0 16px;animation:fade .22s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.home-head{display:flex;align-items:center;gap:12px;padding:calc(14px + env(safe-area-inset-top)) 0 12px}
+.avatar{width:44px;height:44px;border-radius:14px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;
+  font-weight:800;font-size:17px;overflow:hidden;flex:none}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.hello{font-size:15px;font-weight:800}
+.notif-dot{position:relative}
+.notif-dot::after{content:"";position:absolute;top:6px;right:6px;width:9px;height:9px;border-radius:50%;
+  background:var(--danger);border:2px solid var(--card)}
+
+.balance-card{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-2) 100%);border-radius:20px;padding:18px;color:#fff;
+  display:flex;align-items:center;gap:12px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+.balance-card::after{content:"";position:absolute;right:-40px;top:-40px;width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.09)}
+.bc-label{font-size:12px;opacity:.85}
+.bc-amount{font-size:26px;font-weight:800;margin-top:2px}
+.bc-btn{background:#fff;color:var(--blue);border:0;border-radius:12px;padding:11px 16px;font-weight:800;font-size:13px;flex:none;position:relative;z-index:1}
+
+.quick-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:16px}
+.quick{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:12px 4px 10px;
+  display:flex;flex-direction:column;align-items:center;gap:7px;box-shadow:var(--shadow);text-align:center}
+.quick .qi{width:38px;height:38px;border-radius:12px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center}
+.quick span{font-size:10.5px;font-weight:600;color:var(--text)}
+
+.banner-slider{margin-top:18px;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);
+  position:relative;background:var(--card);aspect-ratio:16/7}
+.banner-slider .slides{display:flex;height:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);will-change:transform}
+.banner-slider .slide{flex:0 0 100%;height:100%;position:relative;background:linear-gradient(135deg,#E8F0FF,#D6E4FF);
+  display:grid;place-items:center}
+[data-theme="dark"] .banner-slider .slide{background:linear-gradient(135deg,#162034,#1F2B45)}
+.banner-slider .slide img{width:100%;height:100%;object-fit:cover;display:block}
+.banner-slider .slide .banner-placeholder{color:var(--blue);opacity:.5}
+.banner-dots{position:absolute;bottom:10px;left:0;right:0;display:flex;justify-content:center;gap:6px;z-index:5}
+.banner-dots .dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.5);transition:all .25s;cursor:pointer}
+.banner-dots .dot.active{background:#fff;width:20px;border-radius:5px}
+
+.hscroll{display:flex;gap:12px;overflow-x:auto;padding:2px 16px 6px;margin:0 -16px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.hscroll::-webkit-scrollbar{display:none}
+.hscroll>*{scroll-snap-align:start;flex:none}
+
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:12px}
+.pcard{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;
+  box-shadow:var(--shadow);display:flex;flex-direction:column;cursor:pointer}
+.pcard .thumbwrap{position:relative;background:linear-gradient(135deg,#F0F4FA,#E1E9F5);aspect-ratio:1/1;overflow:hidden;
+  display:grid;place-items:center}
+[data-theme="dark"] .pcard .thumbwrap{background:linear-gradient(135deg,#162034,#1F2B45)}
+.pcard .thumbwrap img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
+.pcard .thumbwrap .img-fallback{color:var(--muted);display:grid;place-items:center}
+.pcard .thumbwrap .img-fallback svg{width:52px;height:52px;opacity:.4}
+.pcard .off{position:absolute;top:8px;left:8px;background:var(--danger);color:#fff;font-size:10.5px;
+  font-weight:800;padding:3px 7px;border-radius:8px;z-index:2}
+.pcard .info{padding:10px 10px 12px;display:flex;flex-direction:column;gap:6px;flex:1}
+.pcard .pname{font-size:13px;font-weight:700;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;
+  -webkit-box-orient:vertical;overflow:hidden;min-height:35px}
+.pcard .prices{display:flex;align-items:baseline;gap:6px}
+.pcard .pnow{font-size:14.5px;font-weight:800;color:var(--blue)}
+.pcard .pold{font-size:11.5px;color:var(--muted);text-decoration:line-through}
+.pcard .cod-tag{font-size:10px;font-weight:800;color:var(--success);background:rgba(22,163,74,.12);
+  padding:2px 6px;border-radius:6px;display:inline-block;width:fit-content}
+.pcard .buy{margin-top:auto;background:var(--blue);color:#fff;border:0;border-radius:10px;padding:9px;font-size:12.5px;font-weight:700}
+
+.ocard{width:190px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px;
+  box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px}
+.ocard .op{font-size:11.5px;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.5px}
+.ocard .big{font-size:19px;font-weight:800}
+.ocard .meta{display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted)}
+.ocard .price{font-size:15px;font-weight:800;color:var(--blue)}
+.ocard .btn{padding:9px;font-size:12.5px;border-radius:10px}
+
+.searchbar{display:flex;align-items:center;gap:10px;background:var(--card);border:1.5px solid var(--border);
+  border-radius:14px;padding:12px 14px;margin-bottom:12px}
+.searchbar input{border:0;outline:0;background:transparent;flex:1;min-width:0;font-size:14.5px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:0 0 4px;margin:0 -16px;padding-left:16px;padding-right:16px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;padding:8px 15px;border-radius:999px;border:1.5px solid var(--border);background:var(--card);
+  font-size:13px;font-weight:600;color:var(--muted)}
+.chip.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.page-head{padding:calc(14px + env(safe-area-inset-top)) 0 14px;display:flex;align-items:center;gap:10px}
+.page-head h2{margin:0;font-size:19px;font-weight:800}
+.head-actions{display:flex;gap:6px;align-items:center}
+.head-btn{padding:7px 12px;border-radius:10px;border:1.5px solid var(--border);background:var(--card);
+  font-size:12.5px;font-weight:700;color:var(--danger)}
+
+.lrow{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);padding:14px;margin-bottom:10px;box-shadow:var(--shadow);position:relative}
+.lrow .li{width:42px;height:42px;border-radius:13px;background:var(--blue-soft);color:var(--blue);
+  display:grid;place-items:center;flex:none}
+.lrow .lt{font-size:14px;font-weight:700}
+.lrow .ls{font-size:12px;color:var(--muted);margin-top:2px}
+.row-del{width:30px;height:30px;border-radius:9px;border:0;background:transparent;display:grid;place-items:center;
+  color:var(--danger);flex:none}
+
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:0 0 10px;margin:0 -16px;padding-left:16px;padding-right:16px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;padding:9px 14px;border-radius:11px;background:var(--card);border:1.5px solid var(--border);
+  font-size:13px;font-weight:700;color:var(--muted)}
+.tab.active{background:var(--blue);border-color:var(--blue);color:#fff}
+
+#bottom-nav{position:fixed;bottom:0;left:0;right:0;margin:0 auto;max-width:560px;background:var(--card);
+  border-top:1px solid var(--border);display:grid;grid-template-columns:repeat(5,1fr);
+  padding:7px 4px calc(7px + env(safe-area-inset-bottom));z-index:60}
+.nav-item{border:0;background:transparent;display:flex;flex-direction:column;align-items:center;gap:3px;
+  color:var(--muted);padding:5px 2px;border-radius:12px;font-size:10.5px;font-weight:700}
+.nav-item.active{color:var(--blue)}
+
+.overlay{position:fixed;inset:0;margin:0 auto;max-width:560px;background:var(--bg);z-index:100;
+  display:flex;flex-direction:column;transform:translateX(100%);opacity:0;
+  transition:transform .24s cubic-bezier(.3,.8,.3,1),opacity .24s;overflow:hidden}
+.overlay.in{transform:translateX(0);opacity:1}
+.ov-head{display:flex;align-items:center;gap:8px;padding:calc(10px + env(safe-area-inset-top)) 12px 10px;
+  background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:5}
+.ov-head h1{font-size:16.5px;font-weight:800;margin:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ov-body{flex:1;overflow-y:auto;padding:16px 16px calc(110px + env(safe-area-inset-bottom))}
+.ov-foot{position:absolute;left:0;right:0;bottom:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+  background:var(--card);border-top:1px solid var(--border)}
+
+.pd-img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r);
+  background:linear-gradient(135deg,#F0F4FA,#E1E9F5);border:1px solid var(--border);display:block}
+[data-theme="dark"] .pd-img{background:linear-gradient(135deg,#162034,#1F2B45)}
+.pd-thumbs{display:flex;gap:8px;overflow-x:auto;margin-top:10px;padding-bottom:4px}
+.pd-thumbs::-webkit-scrollbar{display:none}
+.thumb{width:58px;height:58px;border-radius:12px;object-fit:cover;border:2px solid var(--border);flex:none;background:var(--card-2)}
+.thumb.active{border-color:var(--blue)}
+.pd-name{font-size:19px;font-weight:800;margin:14px 0 4px}
+.price{font-size:22px;font-weight:800;color:var(--blue)}
+.price-old{font-size:14px;color:var(--muted);text-decoration:line-through}
+.badge-save{background:rgba(22,163,74,.15);color:var(--success);font-size:11.5px;font-weight:800;padding:3px 8px;border-radius:8px}
+.opt-label{font-size:13px;font-weight:700;margin:18px 0 8px}
+.opt-row{display:flex;gap:8px;flex-wrap:wrap}
+.opt{padding:9px 15px;border-radius:11px;border:1.5px solid var(--border);background:var(--card);font-size:13.5px;font-weight:700}
+.opt.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.swatches{display:flex;gap:10px;flex-wrap:wrap}
+.swatch{width:44px;height:44px;border-radius:12px;overflow:hidden;border:2.5px solid var(--border);padding:0;background:var(--card-2)}
+.swatch.active{border-color:var(--blue)}
+.swatch img{width:100%;height:100%;object-fit:cover}
+.kv{display:flex;justify-content:space-between;padding:11px 0;font-size:14px;border-bottom:1px dashed var(--border)}
+.kv:last-child{border-bottom:0}
+.kv span:first-child{color:var(--muted)}
+.kv span:last-child{font-weight:700}
+
+.sum-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px;box-shadow:var(--shadow);margin-bottom:12px}
+.sum-prod{display:flex;gap:12px;align-items:center}
+.sum-prod img{width:64px;height:64px;border-radius:12px;object-fit:cover;background:var(--card-2)}
+
+.pm{display:flex;align-items:center;gap:12px;background:var(--card);border:1.5px solid var(--border);
+  border-radius:var(--r);padding:15px;margin-bottom:11px;box-shadow:var(--shadow)}
+.pm.active{border-color:var(--blue);background:var(--blue-soft)}
+.pm .logo{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-weight:800;font-size:11px;color:#fff;flex:none}
+.pm .logo.bkash{background:#E2136E}
+.pm .logo.nagad{background:#EC1C24}
+.pm .logo.rocket{background:#8B5CF6}
+.pm .logo.bal{background:var(--blue)}
+.pm .radio{width:22px;height:22px;border-radius:50%;border:2px solid var(--border);flex:none;display:grid;place-items:center}
+.pm.active .radio{border-color:var(--blue)}
+.pm.active .radio::after{content:"";width:11px;height:11px;border-radius:50%;background:var(--blue)}
+
+.tl{position:relative;padding-left:30px}
+.tl-item{position:relative;padding-bottom:26px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:"";position:absolute;left:-24px;top:4px;width:13px;height:13px;border-radius:50%;
+  background:var(--border);border:2.5px solid var(--card)}
+.tl-item.done::before{background:var(--blue)}
+.tl-item::after{content:"";position:absolute;left:-18.5px;top:17px;bottom:-4px;width:2.5px;background:var(--border)}
+.tl-item:last-child::after{display:none}
+.tl-item.done::after{background:var(--blue)}
+
+.notice{background:var(--blue-soft);border-left:4px solid var(--blue);border-radius:12px;padding:12px 14px;font-size:12.5px;line-height:1.65}
+.warn-box{background:rgba(245,158,11,.12);border-left:4px solid var(--warn);border-radius:12px;padding:12px 14px;font-size:12.5px;line-height:1.65}
+.cod-box{background:rgba(22,163,74,.1);border-left:4px solid var(--success);border-radius:12px;padding:12px 14px;font-size:12.5px;line-height:1.65}
+
+.toast-wrap{position:fixed;left:0;right:0;bottom:calc(96px + env(safe-area-inset-bottom));display:flex;flex-direction:column;
+  align-items:center;gap:8px;z-index:900;pointer-events:none;padding:0 16px}
+.toast{background:rgba(15,23,42,.94);color:#fff;padding:12px 18px;border-radius:12px;font-size:13.5px;
+  max-width:100%;box-shadow:0 8px 26px rgba(0,0,0,.28);animation:tin .25s;font-weight:600;text-align:center}
+.toast.err{background:var(--danger)}
+.toast.ok{background:var(--success)}
+@keyframes tin{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+#loader{position:fixed;inset:0;z-index:950;background:rgba(8,14,26,.42);display:grid;place-items:center;backdrop-filter:blur(2px)}
+#loader .sp{width:42px;height:42px;border-radius:50%;border:4px solid rgba(255,255,255,.3);border-top-color:#fff;animation:spin .75s linear infinite}
+
+.switch{width:48px;height:28px;border-radius:999px;background:var(--border);position:relative;border:0;transition:background .2s;flex:none}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;
+  transition:transform .2s;box-shadow:0 1px 4px rgba(0,0,0,.25)}
+.switch.on{background:var(--blue)}
+.switch.on::after{transform:translateX(20px)}
+
+.profile-pic-preview{width:130px;height:130px;border-radius:28px;background:var(--card-2);display:grid;place-items:center;
+  overflow:hidden;margin:0 auto 12px;border:3px solid var(--border)}
+.profile-pic-preview img{width:100%;height:100%;object-fit:cover}
+.profile-pic-preview .initials{font-size:48px;font-weight:800;color:var(--blue)}
+.file-input-hidden{position:absolute;width:0;height:0;opacity:0;pointer-events:none}
+.upload-hint{text-align:center;font-size:12.5px;color:var(--muted);margin:0 0 16px}
+
+@media (max-width:340px){
+  .quick-grid{gap:6px}.quick .qi{width:34px;height:34px}.quick span{font-size:9.5px}
+  .bc-amount{font-size:22px}.pgrid{grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:10px}
+}
+</style>
+</head>
+<body>
+
+<div id="root">
+
+  <div id="splash">
+    <div class="splash-logo">J-Eo</div>
+    <div class="splash-name">J-Eo Future</div>
+    <div class="splash-tag">Shop • Recharge • Earn</div>
+    <div class="splash-loader"></div>
+  </div>
+
+  <div id="auth-wrap" class="hidden">
+
+    <section id="scr-login" class="auth-screen">
+      <div class="auth-logo">J-Eo</div>
+      <h1 class="auth-title">Welcome Back!</h1>
+      <p class="auth-sub">Login to your account</p>
+
+      <div class="field">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        <input id="loginId" type="text" inputmode="email" placeholder="Gmail / Phone Number" />
+      </div>
+      <div class="field">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        <input id="loginPass" type="password" placeholder="Password" />
+      </div>
+      <div id="loginErr" class="err-text hidden"></div>
+      <div class="link-row" style="margin-bottom:18px"><span></span><a id="goForgot">Forgot Password?</a></div>
+      <button class="btn" id="btnLogin">Login</button>
+      <div class="divider">or</div>
+      <button class="btn ghost" id="btnGoogleLogin">
+        <svg class="ic-sm" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.5l6.7-6.7C35.6 2.4 30.2 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.8 6.1C12.3 13.2 17.6 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.4-4.7 7l7.6 5.9c4.4-4.1 6.8-10.1 6.8-17.4z"/><path fill="#FBBC05" d="M10.4 28.7c-.5-1.5-.8-3-.8-4.7s.3-3.2.8-4.7l-7.8-6.1C1 16.4 0 20.1 0 24s1 7.6 2.6 10.8l7.8-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.6-5.9c-2.1 1.4-4.8 2.3-8.3 2.3-6.4 0-11.7-3.7-13.6-9.1l-7.8 6.1C6.5 42.6 14.6 48 24 48z"/></svg>
+        Continue with Google
+      </button>
+      <div class="auth-foot">Don't have an account? <b id="goSignup">Sign Up</b></div>
+      <div class="support-link" data-support>Live Support</div>
+    </section>
+
+    <section id="scr-signup" class="auth-screen hidden">
+      <div class="auth-logo">J-Eo</div>
+      <h1 class="auth-title">Create Your Account</h1>
+      <p class="auth-sub">Better Future Together</p>
+
+      <div class="field">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>
+        <input id="suName" type="text" placeholder="Full Name" />
+      </div>
+      <div class="field">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        <input id="suId" type="text" inputmode="email" placeholder="Gmail / Phone Number" />
+      </div>
+      <div class="field">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        <input id="suPass" type="password" placeholder="Password" />
+      </div>
+      <div class="field">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        <input id="suPass2" type="password" placeholder="Confirm Password" />
+      </div>
+      <div id="suErr" class="err-text hidden"></div>
+      <button class="btn" id="btnSignup" style="margin-top:6px">Sign Up</button>
+      <div class="divider">or</div>
+      <button class="btn ghost" id="btnGoogleSignup">Continue with Google</button>
+      <div class="auth-foot">Already have an account? <b id="goLogin2">Login</b></div>
+    </section>
+
+    <section id="scr-forgot" class="auth-screen hidden">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:22px">
+        <button class="icon-btn" id="forgotBack" style="margin-left:-10px">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <h2 style="margin:0;font-size:17px;font-weight:800">Forgot Password</h2>
+      </div>
+      <p class="muted small" style="margin:0 0 26px;text-align:center">Enter your Gmail to reset password</p>
+      <div class="field">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        <input id="fpId" type="text" inputmode="email" placeholder="Gmail" />
+      </div>
+      <div id="fpErr" class="err-text hidden"></div>
+      <button class="btn" id="btnReset" style="margin-top:8px">Send Reset Link</button>
+      <div class="auth-foot"><b id="fpBackLogin">Back to Login</b></div>
+    </section>
+  </div>
+
+  <div id="app" class="hidden">
+
+    <section id="page-home" class="page">
+      <header class="home-head">
+        <div class="avatar" id="homeAvatar">U</div>
+        <div class="grow">
+          <div class="hello">Hello, <span id="homeName">User</span></div>
+          <div class="muted small">Welcome to J-Eo Future</div>
+        </div>
+        <button class="icon-btn notif-dot" id="btnNotifHome">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 16v-5a6 6 0 1 0-12 0v5l-2 3h16l-2-3Z"/><path d="M10 22h4"/></svg>
+        </button>
+      </header>
+
+      <div class="balance-card">
+        <div class="grow">
+          <div class="bc-label">Balance</div>
+          <div class="bc-amount" id="homeBalance">৳ 0.00</div>
+        </div>
+        <button class="bc-btn" id="homeAddBalance">Add Balance</button>
+      </div>
+
+      <div class="quick-grid">
+        <button class="quick" data-quick="shop">
+          <span class="qi"><svg class="ic-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 7h12l1 13H5L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg></span>
+          <span>Shop</span>
+        </button>
+        <button class="quick" data-quick="mb">
+          <span class="qi"><svg class="ic-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 3h7l5 5v13H7z"/><rect x="10" y="12" width="6" height="6" rx="1"/></svg></span>
+          <span>MB Offer</span>
+        </button>
+        <button class="quick" data-quick="minute">
+          <span class="qi"><svg class="ic-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <span>Minute</span>
+        </button>
+        <button class="quick" data-quick="addbal">
+          <span class="qi"><svg class="ic-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/><circle cx="17" cy="14" r="1"/></svg></span>
+          <span>Add Balance</span>
+        </button>
+        <button class="quick" data-quick="withdraw">
+          <span class="qi"><svg class="ic-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg></span>
+          <span>Withdraw</span>
+        </button>
+      </div>
+
+      <div id="homeBanner"></div>
+
+      <div class="section-head"><h3>Featured Products</h3><a data-goto-tab="shop">See All</a></div>
+      <div id="homeFeatured"></div>
+
+      <div class="section-head"><h3>MB Offers</h3><a data-goto-offers="mb">See All</a></div>
+      <div id="homeMb"></div>
+
+      <div class="section-head"><h3>Minute Offers</h3><a data-goto-offers="minute">See All</a></div>
+      <div id="homeMinute"></div>
+    </section>
+
+    <section id="page-shop" class="page hidden">
+      <div class="page-head">
+        <h2 class="grow">Shop</h2>
+        <button class="icon-btn" id="shopSearchBtn">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+      </div>
+      <div class="searchbar">
+        <svg class="ic-sm muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input id="shopSearch" type="search" placeholder="Search products..." />
+      </div>
+      <div class="chips" id="shopCats"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin:14px 0 10px">
+        <span class="muted small" id="shopCount">0 products</span>
+        <button class="chip" id="shopSort">Sort: Newest</button>
+      </div>
+      <div id="shopGrid"></div>
+    </section>
+
+    <section id="page-offers" class="page hidden">
+      <div class="page-head"><h2>Offers</h2></div>
+      <div class="tabs" id="offerTabs">
+        <button class="tab active" data-otab="mb">MB Offers</button>
+        <button class="tab" data-otab="minute">Minute Offers</button>
+      </div>
+      <div class="chips" id="offerOps"></div>
+      <div id="offerList" style="margin-top:14px"></div>
+    </section>
+
+    <section id="page-history" class="page hidden">
+      <div class="page-head">
+        <h2 class="grow">History</h2>
+        <div class="head-actions">
+          <button class="head-btn" id="histClearAll">🗑 Clear All</button>
+          <button class="icon-btn" id="histRefresh">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="tabs" id="histTabs">
+        <button class="tab active" data-htab="shopping">Shopping</button>
+        <button class="tab" data-htab="mb">MB</button>
+        <button class="tab" data-htab="minute">Minute</button>
+        <button class="tab" data-htab="balance">Balance</button>
+        <button class="tab" data-htab="withdrawal">Withdraw</button>
+        <button class="tab" data-htab="commission">Commission</button>
+      </div>
+      <div id="histList" style="margin-top:14px"></div>
+    </section>
+
+    <section id="page-profile" class="page hidden">
+      <div class="page-head"><h2>Profile</h2></div>
+
+      <div class="card" style="padding:18px;display:flex;align-items:center;gap:14px;margin-bottom:18px">
+        <div class="avatar" id="profAvatar" style="width:60px;height:60px;border-radius:18px;font-size:22px">U</div>
+        <div class="grow">
+          <div style="font-size:16.5px;font-weight:800" id="profName">User</div>
+          <div class="muted small ellipsis" id="profEmail">—</div>
+          <div class="muted small" id="profPhone">—</div>
+        </div>
+      </div>
+
+      <div class="balance-card" style="margin-bottom:18px">
+        <div class="grow">
+          <div class="bc-label">Balance</div>
+          <div class="bc-amount" id="profBalance">৳ 0.00</div>
+        </div>
+        <button class="bc-btn" id="profAddBalance">Add Balance</button>
+      </div>
+
+      <div class="lrow" id="pChangePass">
+        <div class="li"><svg class="ic-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+        <div class="grow"><div class="lt">Change Password</div></div>
+      </div>
+
+      <div class="lrow" id="pProfilePic">
+        <div class="li"><svg class="ic-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="10" r="3"/><path d="M5.5 19c1.6-2.2 3.9-3 6.5-3s4.9.8 6.5 3"/></svg></div>
+        <div class="grow"><div class="lt">Profile Picture</div><div class="ls">Change your photo</div></div>
+      </div>
+
+      <div class="lrow" id="pUpdateProfile">
+        <div class="li"><svg class="ic-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20h4l10-10-4-4L4 16v4Z"/><path d="m14 6 4 4"/></svg></div>
+        <div class="grow"><div class="lt">Update Profile</div></div>
+      </div>
+
+      <div class="lrow">
+        <div class="li"><svg class="ic-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg></div>
+        <div class="grow"><div class="lt">Dark Mode</div></div>
+        <button class="switch" id="themeSwitch"></button>
+      </div>
+
+      <div class="lrow" id="pNotif">
+        <div class="li"><svg class="ic-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 16v-5a6 6 0 1 0-12 0v5l-2 3h16l-2-3Z"/><path d="M10 22h4"/></svg></div>
+        <div class="grow"><div class="lt">Notifications</div></div>
+      </div>
+
+      <div class="lrow" data-support>
+        <div class="li"><svg class="ic-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 17v.01"/></svg></div>
+        <div class="grow"><div class="lt">Live Support</div></div>
+      </div>
+
+      <div class="lrow" id="pLogout" style="margin-bottom:30px">
+        <div class="li" style="background:rgba(220,38,38,.12);color:var(--danger)"><svg class="ic-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 12H3"/><path d="M7 8l-4 4 4 4"/><path d="M11 4h8v16h-8"/></svg></div>
+        <div class="grow"><div class="lt" style="color:var(--danger)">Logout</div></div>
+      </div>
+    </section>
+
+    <nav id="bottom-nav">
+      <button class="nav-item active" data-tab="home">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+        <span>Home</span>
+      </button>
+      <button class="nav-item" data-tab="shop">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 7h12l1 13H5L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+        <span>Shop</span>
+      </button>
+      <button class="nav-item" data-tab="offers">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.6 13.4 12 22l-9-9V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
+        <span>Offers</span>
+      </button>
+      <button class="nav-item" data-tab="history">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <span>History</span>
+      </button>
+      <button class="nav-item" data-tab="profile">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>
+        <span>Profile</span>
+      </button>
+    </nav>
+  </div>
+
+  <div id="overlays"></div>
+  <div class="toast-wrap" id="toasts"></div>
+  <input type="file" id="profilePicInput" class="file-input-hidden" accept="image/*" />
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import {
+  getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+  signOut, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup, updateProfile,
+  EmailAuthProvider, reauthenticateWithCredential, updatePassword
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import {
+  getFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc, addDoc, collection, query, where,
+  getDocs, serverTimestamp, runTransaction, writeBatch
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDXhah5s0XWHWyfHDJckABJMjrKKKpFHcY",
+  authDomain: "j-eo-future.firebaseapp.com",
+  databaseURL: "https://j-eo-future-default-rtdb.firebaseio.com",
+  projectId: "j-eo-future",
+  storageBucket: "j-eo-future.firebasestorage.app",
+  messagingSenderId: "338987361835",
+  appId: "1:338987361835:web:2a92ae6b39d69e8e76ec6e",
+  measurementId: "G-89KJ13EJ92"
+};
+
+const fbApp = initializeApp(firebaseConfig);
+const auth  = getAuth(fbApp);
+const db    = getFirestore(fbApp);
+
+const state = {
+  user: null, profile: null,
+  products: [], mbOffers: [], minuteOffers: [], banners: [],
+  notifications: [], payments: {}, support: {},
+  history: { shopping: [], mb: [], minute: [], balance: [], withdrawal: [], commission: [] },
+  historyLoaded: false,
+  theme: localStorage.getItem('jeo_theme') || 'light'
+};
+
+const COLLECTIONS = {
+  shopping: 'shoppingOrders', mb: 'mbOrders', minute: 'minuteOrders',
+  balance: 'balanceRequests', withdrawal: 'withdrawals'
+};
+const MIN_ADD_BALANCE = 50, MAX_ADD_BALANCE = 25000;
+const MIN_WITHDRAW = 100, MAX_WITHDRAW = 25000;
+
+const $  = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
+function withTimeout(promise, ms, label='request'){
+  return Promise.race([promise, new Promise((_,rej)=>setTimeout(()=>rej(new Error(label+' timeout')),ms))]);
+}
+function esc(v){
+  if (v === null || v === undefined) return '';
+  return String(v).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+function money(n){ const v = Number(n||0); return '৳ ' + v.toLocaleString('en-US',{minimumFractionDigits:(v%1?2:0),maximumFractionDigits:2}); }
+function ts(v){ if(!v) return new Date(); if(typeof v.toDate==='function') return v.toDate(); if(v.seconds) return new Date(v.seconds*1000); return new Date(v); }
+function fmtDate(v){ const d = ts(v); if(isNaN(d)) return '—'; return d.toLocaleString('en-GB',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}); }
+function toast(msg, type=''){ const w=$('#toasts'); if(!w)return; const e=document.createElement('div'); e.className='toast '+type; e.textContent=msg; w.appendChild(e); setTimeout(()=>{ e.style.transition='opacity .3s,transform .3s'; e.style.opacity='0'; e.style.transform='translateY(10px)'; setTimeout(()=>e.remove(),320); },2600); }
+function showLoader(on=true){ let e=$('#loader'); if(on){ if(!e){ e=document.createElement('div'); e.id='loader'; e.innerHTML='<div class="sp"></div>'; document.body.appendChild(e); } } else if(e) e.remove(); }
+function busy(btn,on){ if(!btn)return; btn.classList.toggle('loading',on); btn.disabled=on; }
+function initials(n){ if(!n)return 'U'; const p=n.trim().split(/\s+/); return ((p[0]?.[0]||'')+(p[1]?.[0]||'')).toUpperCase()||'U'; }
+function avatarHTML(p){ const u=p?.photoURL||p?.photo; if(u) return `<img src="${esc(u)}" alt="" onerror="this.remove()">`; return initials(p?.name); }
+function statusBadge(s){ const st=(s||'pending').toLowerCase(); return `<span class="badge ${st}">${esc(st.charAt(0).toUpperCase()+st.slice(1))}</span>`; }
+function emptyHTML(t,x,i='bag'){ const p=ICONS[i]||ICONS.bag; return `<div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">${p}</svg><b>${esc(t)}</b><p>${esc(x)}</p></div>`; }
+
+const ICONS = {
+  home:'<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/>',
+  bag:'<path d="M6 7h12l1 13H5L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/>',
+  tag:'<path d="M20.6 13.4 12 22l-9-9V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z"/><circle cx="7.5" cy="7.5" r="1.5"/>',
+  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/>',
+  bell:'<path d="M18 16v-5a6 6 0 1 0-12 0v5l-2 3h16l-2-3Z"/><path d="M10 22h4"/>',
+  back:'<path d="M15 18l-6-6 6-6"/>',
+  check:'<path d="M20 6 9 17l-5-5"/>',
+  edit:'<path d="M4 20h4l10-10-4-4L4 16v4Z"/><path d="m14 6 4 4"/>',
+  logout:'<path d="M15 12H3"/><path d="M7 8l-4 4 4 4"/><path d="M11 4h8v16h-8"/>',
+  lock:'<rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>',
+  mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+  phone:'<path d="M6 3h3l2 5-2.5 1.5a12 12 0 0 0 6 6L16 13l5 2v3a2 2 0 0 1-2.2 2A16 16 0 0 1 4 5.2 2 2 0 0 1 6 3Z"/>',
+  support:'<circle cx="12" cy="12" r="9"/><path d="M12 17v.01"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.4 2.3c-.6.3-.9.8-.9 1.4"/>',
+  wallet:'<rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/><circle cx="17" cy="14" r="1"/>',
+  sim:'<path d="M7 3h7l5 5v13H7z"/><rect x="10" y="12" width="6" height="6" rx="1"/>',
+  doc:'<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v5h5"/>',
+  trash:'<path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/>',
+  camera:'<path d="M4 7h3l2-2h6l2 2h3v13H4z"/><circle cx="12" cy="13" r="3"/>',
+  image:'<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="m21 17-5-5-4 4-2-2-4 4"/>'
+};
+function icon(n,c='ic'){ return `<svg class="${c}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICONS[n]||''}</svg>`; }
+
+function applyTheme(t){
+  state.theme = t;
+  document.documentElement.dataset.theme = t;
+  localStorage.setItem('jeo_theme', t);
+  const sw=$('#themeSwitch'); if(sw) sw.classList.toggle('on', t==='dark');
+  const m=document.querySelector('meta[name="theme-color"]'); if(m) m.setAttribute('content', t==='dark'?'#080E1A':'#0B5FFF');
+}
+applyTheme(state.theme);
+
+/* ==============================================================
+   🎯 BULLETPROOF IMAGE RESOLVER
+   ============================================================== */
+function productImage(p){
+  if(!p) return '';
+  const isValidUrl = (u) => {
+    if(!u || typeof u !== 'string') return false;
+    const s = u.trim();
+    if(!s) return false;
+    return /^(https?:\/\/|data:image\/|\/\/)/i.test(s);
+  };
+  const cleanUrl = (u) => {
+    let s = String(u).trim();
+    if(s.startsWith('//')) s = 'https:' + s;
+    if(s.includes('drive.google.com/file/d/')) {
+      const match = s.match(/\/d\/([a-zA-Z0-9_-]+)/);
+      if(match && match[1]) return `https://drive.google.com/uc?export=view&id=${match[1]}`;
+    }
+    return s;
+  };
+  if(Array.isArray(p.colors) && p.colors.length){
+    for(const c of p.colors){
+      if(!c) continue;
+      const candidates = [c.image, c.img, c.url, c.link, c.imageUrl, c.imageURL, c.image_url, c.img_url, c.photo, c.picture, c.src];
+      for(const cand of candidates){ if(isValidUrl(cand)) return cleanUrl(cand); }
+    }
+  }
+  if(p.color && typeof p.color === 'object'){
+    const candidates = [p.color.image, p.color.img, p.color.url, p.color.link, p.color.src];
+    for(const cand of candidates){ if(isValidUrl(cand)) return cleanUrl(cand); }
+  }
+  const directFields = ['image', 'img', 'url', 'link', 'imageUrl', 'imageURL', 'imgUrl', 'image_url', 'img_url', 'image_link', 'photo', 'photoURL', 'thumbnail', 'thumb', 'picture', 'src', 'colorImage', 'firstImage', 'mainImage', 'productImage', 'product_image', 'productImageUrl', 'featuredImage', 'coverImage', 'cover', 'preview', 'image1'];
+  for(const f of directFields){ if(isValidUrl(p[f])) return cleanUrl(p[f]); }
+  if(Array.isArray(p.images) && p.images.length){
+    for(const i of p.images){
+      if(typeof i === 'string' && isValidUrl(i)) return cleanUrl(i);
+      if(i && typeof i === 'object'){ const c = [i.image, i.img, i.url, i.src]; for(const cand of c){ if(isValidUrl(cand)) return cleanUrl(cand); } }
+    }
+  }
+  try{
+    for(const key of Object.keys(p)){
+      const v = p[key]; const lowerKey = key.toLowerCase();
+      if(typeof v === 'string' && isValidUrl(v) && (lowerKey.includes('image') || lowerKey.includes('img') || lowerKey.includes('url') || lowerKey.includes('pic') || lowerKey.includes('link'))) return cleanUrl(v);
+      if(v && typeof v === 'object' && !Array.isArray(v)){
+        for(const k2 of Object.keys(v)){
+          const lowerK2 = k2.toLowerCase();
+          if(typeof v[k2] === 'string' && isValidUrl(v[k2]) && (lowerK2.includes('image') || lowerK2.includes('img') || lowerK2.includes('url') || lowerK2.includes('pic') || lowerK2.includes('link'))) return cleanUrl(v[k2]);
+        }
+      }
+    }
+  }catch(e){}
+  return '';
+}
+
+/* ==============================================================
+   DATA LAYER (Updated with Notifications)
+   ============================================================== */
+const Data = {
+  async getProfile(uid){ const s=await getDoc(doc(db,'users',uid)); return s.exists()?{id:s.id,...s.data()}:null; },
+  async createProfile(uid, data){
+    await setDoc(doc(db,'users',uid),{
+      name: data.name||'', email: data.email||'', phone: data.phone||'', photoURL: data.photoURL||'',
+      balance: 0, theme: state.theme, createdAt: serverTimestamp()
+    }, { merge: true });
+  },
+  async updateProfile(uid, data){ await updateDoc(doc(db,'users',uid), data); },
+  async loadProducts(){
+    const snap = await getDocs(query(collection(db,'products'), where('status','==','active')));
+    state.products = snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>ts(b.createdAt)-ts(a.createdAt));
+  },
+  async loadMbOffers(){
+    const snap = await getDocs(query(collection(db,'mbOffers'), where('status','==','active')));
+    state.mbOffers = snap.docs.map(d=>({id:d.id,...d.data()}));
+  },
+  async loadMinuteOffers(){
+    const snap = await getDocs(query(collection(db,'minuteOffers'), where('status','==','active')));
+    state.minuteOffers = snap.docs.map(d=>({id:d.id,...d.data()}));
+  },
+  async loadBanners(){
+    try{
+      const snap = await getDocs(query(collection(db,'banners'), where('status','==','active')));
+      state.banners = snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>ts(b.createdAt)-ts(a.createdAt));
+    }catch(e){ state.banners = []; }
+  },
+  async loadSettings(){
+    try{ const p=await getDoc(doc(db,'settings','payments')); state.payments = p.exists()?p.data():{}; }catch(e){ state.payments={}; }
+    try{ const s=await getDoc(doc(db,'settings','support')); state.support = s.exists()?s.data():{}; }catch(e){ state.support={}; }
+  },
+  async loadHistory(uid){
+    const out = { shopping:[], mb:[], minute:[], balance:[], withdrawal:[], commission:[] };
+    const jobs = Object.entries(COLLECTIONS).map(async ([k,col])=>{
+      try{
+        const snap = await getDocs(query(collection(db,col), where('userId','==',uid)));
+        out[k] = snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>ts(b.createdAt)-ts(a.createdAt));
+      }catch(e){ out[k]=[]; }
+    });
+    jobs.push((async()=>{
+      try{
+        const snap = await getDocs(query(collection(db,'transactions'), where('userId','==',uid)));
+        out.commission = snap.docs.map(d=>({id:d.id,...d.data()})).filter(t=>t.type==='commission').sort((a,b)=>ts(b.createdAt)-ts(a.createdAt));
+      }catch(e){ out.commission=[]; }
+    })());
+    await Promise.all(jobs);
+    state.history = out; state.historyLoaded = true; return out;
+  },
+  // 🎯 NEW: Notification Fetching Logic
+  async loadNotifications(uid){
+    try{
+      const snap = await getDocs(query(collection(db,'notifications'), where('userId','in',[uid,'all'])));
+      state.notifications = snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>ts(b.createdAt)-ts(a.createdAt));
+      return state.notifications;
+    }catch(e){ 
+      console.warn("Notification error:", e);
+      state.notifications=[]; 
+      return []; 
+    }
+  },
+  async deleteHistoryItem(kind, id){ await deleteDoc(doc(db, COLLECTIONS[kind], id)); state.history[kind] = (state.history[kind]||[]).filter(x=>x.id!==id); },
+  async clearAllHistory(kind){
+    const uid = state.user?.uid; if(!uid) return 0;
+    const items = state.history[kind]||[];
+    const batch = writeBatch(db); let n=0;
+    items.forEach(i=>{ batch.delete(doc(db,COLLECTIONS[kind],i.id)); n++; });
+    if(n>0) await batch.commit();
+    state.history[kind] = []; return n;
+  },
+  async deleteNotification(id){ await deleteDoc(doc(db,'notifications',id)); state.notifications = state.notifications.filter(x=>x.id!==id); },
+  async clearAllNotifications(){
+    const items = state.notifications||[];
+    const batch = writeBatch(db); let n=0;
+    items.forEach(i=>{ batch.delete(doc(db,'notifications',i.id)); n++; });
+    if(n>0) await batch.commit();
+    state.notifications = []; return n;
+  }
+};
+
+/* ==============================================================
+   MONEY — COD enabled
+   ============================================================== */
+const Money = {
+  async placeCodOrder(orderDoc, method, trxId, deliveryAmount){
+    const uid = state.user.uid;
+    const userRef = doc(db, 'users', uid);
+    const orderRef = doc(collection(db, orderDoc.collection));
+
+    if (method === 'balance'){
+      await runTransaction(db, async (tx) => {
+        const snap = await tx.get(userRef);
+        if (!snap.exists()) throw new Error('Profile not found');
+        const balance = Number(snap.data().balance || 0);
+        if (balance < deliveryAmount) throw new Error('INSUFFICIENT_BALANCE');
+
+        tx.update(userRef, { balance: balance - deliveryAmount });
+        tx.set(orderRef, {
+          ...orderDoc.data,
+          id: orderRef.id, userId: uid,
+          paymentMethod: 'balance', transactionId: '',
+          deliveryChargePaid: true, deliveryPaidAmount: deliveryAmount,
+          codAmount: orderDoc.data.codAmount || 0,
+          status: 'pending', paymentStatus: 'paid',
+          createdAt: serverTimestamp(), updatedAt: serverTimestamp()
+        });
+        tx.set(doc(collection(db,'transactions')), {
+          userId: uid, type: 'delivery_charge', direction: 'debit',
+          amount: deliveryAmount, refId: orderRef.id, refType: orderDoc.collection,
+          note: 'Delivery charge paid (COD)', createdAt: serverTimestamp()
+        });
+      });
+    } else {
+      await setDoc(orderRef, {
+        ...orderDoc.data,
+        id: orderRef.id, userId: uid,
+        paymentMethod: method, transactionId: trxId,
+        deliveryChargePaid: true, deliveryPaidAmount: deliveryAmount,
+        codAmount: orderDoc.data.codAmount || 0,
+        status: 'pending', paymentStatus: 'pending_verification',
+        createdAt: serverTimestamp(), updatedAt: serverTimestamp()
+      });
+    }
+    return orderRef.id;
+  },
+
+  async requestAddBalance(amount, method, trxId){
+    const uid = state.user.uid;
+    const ref = doc(collection(db,'balanceRequests'));
+    await setDoc(ref, {
+      id: ref.id, userId: uid, amount: Number(amount), method, transactionId: trxId,
+      type: 'add_balance', status: 'pending', createdAt: serverTimestamp(), updatedAt: serverTimestamp()
+    });
+    return ref.id;
+  },
+
+  async requestWithdraw(amount, method, receiverNumber){
+    const uid = state.user.uid;
+    const userRef = doc(db,'users',uid);
+    const wdRef = doc(collection(db,'withdrawals'));
+    await runTransaction(db, async (tx)=>{
+      const snap = await tx.get(userRef);
+      if(!snap.exists()) throw new Error('Profile not found');
+      const balance = Number(snap.data().balance || 0);
+      const amt = Number(amount);
+      if(balance < amt) throw new Error('INSUFFICIENT_BALANCE');
+      tx.update(userRef, { balance: balance - amt });
+      tx.set(wdRef, {
+        id: wdRef.id, userId: uid, amount: amt, method, receiverNumber,
+        type: 'withdraw', status: 'pending', refunded: false,
+        createdAt: serverTimestamp(), updatedAt: serverTimestamp()
+      });
+      tx.set(doc(collection(db,'transactions')), {
+        userId: uid, type: 'withdraw_request', direction: 'debit', amount: amt,
+        refId: wdRef.id, refType: 'withdrawals', note: `Withdraw via ${method}`,
+        createdAt: serverTimestamp()
+      });
+    });
+    return wdRef.id;
+  }
+};
+
+/* ==============================================================
+   AUTH
+   ============================================================== */
+function showAuthScreen(which){
+  $('#app').classList.add('hidden');
+  $('#auth-wrap').classList.remove('hidden');
+  ['login','signup','forgot'].forEach(s=>{ $('#scr-'+s).classList.toggle('hidden', s!==which); });
+  window.scrollTo(0,0);
+}
+
+async function ensureProfile(user){
+  let p = await Data.getProfile(user.uid);
+  if(!p){
+    await Data.createProfile(user.uid, {
+      name: user.displayName || (user.email?user.email.split('@')[0]:'User'),
+      email: user.email||'', phone: user.phoneNumber||'', photoURL: user.photoURL||''
+    });
+    p = await Data.getProfile(user.uid);
+  } else if (user.photoURL && !p.photoURL){
+    try{ await Data.updateProfile(user.uid, { photoURL: user.photoURL }); p.photoURL = user.photoURL; }catch(e){}
+  }
+  return p;
+}
+
+async function bootApp(user){
+  showLoader(true);
+  state.user = user;
+  try{
+    let profile = null;
+    try{ profile = await withTimeout(Data.getProfile(user.uid), 8000, 'profile'); }catch(e){ console.warn('profile:', e.message); }
+    if(!profile){
+      try{
+        await withTimeout(Data.createProfile(user.uid, {
+          name: user.displayName || (user.email?user.email.split('@')[0]:'User'),
+          email: user.email||'', phone: user.phoneNumber||'', photoURL: user.photoURL||''
+        }), 8000, 'createProfile');
+        profile = await withTimeout(Data.getProfile(user.uid), 6000, 'reprofile');
+      }catch(e){
+        profile = { id:user.uid, name: user.displayName||'User', email: user.email||'', phone:'', photoURL:'', balance:0, theme:state.theme };
+      }
+    }
+    state.profile = profile;
+    applyTheme(state.profile.theme || state.theme);
+
+    $('#auth-wrap').classList.add('hidden');
+    $('#app').classList.remove('hidden');
+    renderHome(); renderShop(); renderOffers(); renderProfile();
+    tab('home');
+    showLoader(false);
+    loadAllDataInBackground();
+  }catch(e){
+    console.error('bootApp:', e);
+    showLoader(false);
+    $('#auth-wrap').classList.add('hidden');
+    $('#app').classList.remove('hidden');
+    renderHome(); renderShop(); renderOffers(); renderProfile();
+    tab('home');
+  }
+}
+
+async function loadAllDataInBackground(){
+  const jobs = [
+    withTimeout(Data.loadSettings(), 6000).catch(()=>{ state.payments={}; state.support={}; }),
+    withTimeout(Data.loadProducts(), 8000).catch(()=>{ state.products=[]; }),
+    withTimeout(Data.loadMbOffers(), 8000).catch(()=>{ state.mbOffers=[]; }),
+    withTimeout(Data.loadMinuteOffers(), 8000).catch(()=>{ state.minuteOffers=[]; }),
+    withTimeout(Data.loadBanners(), 6000).catch(()=>{ state.banners=[]; }),
+    withTimeout(Data.loadNotifications(state.user.uid), 6000).catch(()=>{ state.notifications=[]; })
+  ];
+  await Promise.allSettled(jobs);
+  try{ renderHome(); renderShop(); renderOffers(); }catch(e){}
+}
+
+const splashStart = Date.now();
+function hideSplash(){
+  const wait = Math.max(0, 1100 - (Date.now()-splashStart));
+  setTimeout(()=>{
+    const sp = $('#splash'); if(!sp) return;
+    sp.classList.add('hide');
+    setTimeout(()=>sp.remove(), 380);
+  }, wait);
+}
+
+onAuthStateChanged(auth, async (user)=>{
+  setTimeout(hideSplash, 1200);
+  if(user){
+    try{ await bootApp(user); }catch(e){ console.error(e); hideSplash(); showLoader(false); $('#app').classList.remove('hidden'); $('#auth-wrap').classList.add('hidden'); }
+  } else {
+    state.user = null; state.profile = null;
+    $('#app').classList.add('hidden');
+    showAuthScreen('login');
+  }
+});
+
+$('#btnLogin').addEventListener('click', async (e)=>{
+  const id = $('#loginId').value.trim(); const pass = $('#loginPass').value; const err = $('#loginErr');
+  err.classList.add('hidden');
+  if(!id || !pass){ err.textContent='সব ফিল্ড পূরণ করুন।'; err.classList.remove('hidden'); return; }
+  busy(e.currentTarget, true);
+  try{ await signInWithEmailAndPassword(auth, id, pass); }
+  catch(ex){ err.textContent = authError(ex.code); err.classList.remove('hidden'); }
+  finally{ busy(e.currentTarget, false); }
+});
+$('#loginPass').addEventListener('keydown', e=>{ if(e.key==='Enter') $('#btnLogin').click(); });
+
+$('#btnSignup').addEventListener('click', async (e)=>{
+  const name = $('#suName').value.trim();
+  const id = $('#suId').value.trim();
+  const pass = $('#suPass').value;
+  const pass2 = $('#suPass2').value;
+  const err = $('#suErr');
+  err.classList.add('hidden');
+  if(!name || !id || !pass || !pass2){ err.textContent='সব ফিল্ড পূরণ করুন।'; err.classList.remove('hidden'); return; }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(id) && !/^\+?\d{10,15}$/.test(id.replace(/[\s-]/g,''))){ err.textContent='সঠিক Gmail দিন।'; err.classList.remove('hidden'); return; }
+  if(pass.length < 6){ err.textContent='Password কমপক্ষে ৬ অক্ষর।'; err.classList.remove('hidden'); return; }
+  if(pass !== pass2){ err.textContent='Password মিলছে না।'; err.classList.remove('hidden'); return; }
+  busy(e.currentTarget, true);
+  try{
+    const cred = await createUserWithEmailAndPassword(auth, id, pass);
+    await updateProfile(cred.user, { displayName: name });
+    await Data.createProfile(cred.user.uid, { name, email: id, phone:'', photoURL:'' });
+  }catch(ex){ err.textContent = authError(ex.code); err.classList.remove('hidden'); }
+  finally{ busy(e.currentTarget, false); }
+});
+
+async function googleAuth(btn){
+  busy(btn, true);
+  try{
+    const provider = new GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: 'select_account' });
+    const res = await signInWithPopup(auth, provider);
+    await ensureProfile(res.user);
+  }catch(ex){
+    if(ex.code !== 'auth/popup-closed-by-user') toast(authError(ex.code), 'err');
+  }finally{ busy(btn, false); }
+}
+$('#btnGoogleLogin').addEventListener('click', e=>googleAuth(e.currentTarget));
+$('#btnGoogleSignup').addEventListener('click', e=>googleAuth(e.currentTarget));
+
+$('#btnReset').addEventListener('click', async (e)=>{
+  const id = $('#fpId').value.trim();
+  const err = $('#fpErr'); err.classList.add('hidden');
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(id)){ err.textContent='সঠিক Gmail দিন।'; err.classList.remove('hidden'); return; }
+  busy(e.currentTarget, true);
+  try{ await sendPasswordResetEmail(auth, id); toast('Reset link পাঠানো হয়েছে।','ok'); setTimeout(()=>showAuthScreen('login'),900); }
+  catch(ex){ err.textContent = authError(ex.code); err.classList.remove('hidden'); }
+  finally{ busy(e.currentTarget, false); }
+});
+
+function authError(code){
+  const map = {
+    'auth/invalid-email':'Invalid Email।','auth/user-not-found':'Account খুঁজে পাওয়া যায়নি।',
+    'auth/wrong-password':'Password ভুল।','auth/invalid-credential':'Email/Password ভুল।',
+    'auth/email-already-in-use':'Email আগেই ব্যবহৃত।','auth/weak-password':'Password দুর্বল।',
+    'auth/too-many-requests':'অনেক চেষ্টা।','auth/network-request-failed':'Network Error।',
+    'auth/popup-closed-by-user':'','auth/operation-not-allowed':'Login method চালু নেই।'
+  };
+  return map[code]||'কিছু ভুল হয়েছে।';
+}
+
+$('#goSignup').onclick    = ()=>showAuthScreen('signup');
+$('#goLogin2').onclick    = ()=>showAuthScreen('login');
+$('#goForgot').onclick    = ()=>showAuthScreen('forgot');
+$('#forgotBack').onclick  = ()=>showAuthScreen('login');
+$('#fpBackLogin').onclick = ()=>showAuthScreen('login');
+
+/* ==============================================================
+   TAB ROUTER
+   ============================================================== */
+let activeTab = 'home';
+function tab(name){
+  activeTab = name;
+  ['home','shop','offers','history','profile'].forEach(t=>{
+    const el = $('#page-'+t); if(el) el.classList.toggle('hidden', t!==name);
+  });
+  $$('.nav-item').forEach(b=>b.classList.toggle('active', b.dataset.tab===name));
+  window.scrollTo({top:0,behavior:'instant'});
+  if(name==='history') refreshHistory();
+}
+$$('.nav-item').forEach(b=>b.addEventListener('click', ()=>tab(b.dataset.tab)));
+
+document.addEventListener('click', (e)=>{
+  const q = e.target.closest('[data-quick]');
+  if(q){
+    const k = q.dataset.quick;
+    if(k==='shop') tab('shop');
+    else if(k==='mb'){ tab('offers'); setOfferTab('mb'); }
+    else if(k==='minute'){ tab('offers'); setOfferTab('minute'); }
+    else if(k==='addbal') openAddBalance();
+    else if(k==='withdraw') openWithdraw();
+    return;
+  }
+  const gt = e.target.closest('[data-goto-tab]'); if(gt){ tab(gt.dataset.gotoTab); return; }
+  const go = e.target.closest('[data-goto-offers]'); if(go){ tab('offers'); setOfferTab(go.dataset.gotoOffers); return; }
+  const sup = e.target.closest('[data-support]'); if(sup){ openSupport(); return; }
+});
+
+/* ==============================================================
+   BALANCE
+   ============================================================== */
+function currentBalance(){ return Number(state.profile?.balance || 0); }
+function paintBalance(){
+  const t = money(currentBalance());
+  ['#homeBalance','#profBalance'].forEach(s=>{ const e=$(s); if(e) e.textContent = t; });
+}
+async function refreshProfile(){
+  if(!state.user) return;
+  try{ const p = await withTimeout(Data.getProfile(state.user.uid), 6000); if(p){ state.profile = p; paintBalance(); renderProfile(); } }catch(e){}
+}
+
+function discountPct(p){
+  const last = Number(p.lastPrice||0), now = Number(p.price||0);
+  if(!last || last<=now) return 0;
+  return Math.round((1 - now/last) * 100);
+}
+
+/* Product card */
+function productCardHTML(p){
+  const img = productImage(p);
+  const off = discountPct(p);
+  const hasImg = !!img;
+
+  return `<div class="pcard" data-product="${esc(p.id)}">
+    <div class="thumbwrap">
+      ${hasImg
+        ? `<img src="${esc(img)}" alt="" loading="lazy"
+              onerror="this.remove();this.parentNode.querySelector('.img-fallback').style.display='grid';">
+           <div class="img-fallback" style="display:none">${icon('image','ic-lg')}</div>`
+        : `<div class="img-fallback" style="display:grid">${icon('image','ic-lg')}</div>`}
+      ${off ? `<span class="off">-${off}%</span>` : ''}
+    </div>
+    <div class="info">
+      <div class="pname">${esc(p.name || 'Product')}</div>
+      <div class="prices">
+        <span class="pnow">${money(p.price)}</span>
+        ${p.lastPrice ? `<span class="pold">${money(p.lastPrice)}</span>` : ''}
+      </div>
+      <span class="cod-tag">💵 Cash on Delivery</span>
+      <button class="buy" data-buy="${esc(p.id)}">Buy Now</button>
+    </div>
+  </div>`;
+}
+
+function offerCardHTML(o, kind){
+  const big = kind==='mb' ? (o.mb||o.data||'—') : `${o.minutes||o.minute||0} Min`;
+  return `<div class="ocard" data-offer="${esc(o.id)}" data-kind="${kind}">
+    <div class="op">${esc(o.operator||'')}</div>
+    <div class="big">${esc(big)}</div>
+    <div class="meta"><span>${esc(o.validity||'')}</span><span>Comm ${money(o.commission)}</span></div>
+    <div class="price">${money(o.price)}</div>
+    <button class="btn" data-buy-offer="${esc(o.id)}" data-kind="${kind}">Buy Now</button>
+  </div>`;
+}
+
+/* ==============================================================
+   HOME
+   ============================================================== */
+let bannerTimer = null;
+let bannerIndex = 0;
+
+function renderHome(){
+  const p = state.profile || {};
+  const av = $('#homeAvatar'); if(av) av.innerHTML = avatarHTML(p);
+  const hn = $('#homeName'); if(hn) hn.textContent = (p.name||'User').split(' ')[0];
+  paintBalance();
+
+  // 🎯 NEW: Show/hide notification red dot based on unread
+  const bell = $('#btnNotifHome');
+  if (bell && state.notifications && state.notifications.length > 0) {
+    bell.classList.add('notif-dot');
+  } else if (bell) {
+    bell.classList.remove('notif-dot');
+  }
+
+  const bannerBox = $('#homeBanner');
+  if(bannerTimer){ clearInterval(bannerTimer); bannerTimer = null; }
+  bannerIndex = 0;
+
+  if(bannerBox){
+    if(state.banners.length){
+      bannerBox.innerHTML = `
+        <div class="banner-slider" id="bannerSlider">
+          <div class="slides" id="bannerSlides">
+            ${state.banners.map(b=>`
+              <div class="slide">
+                ${b.image
+                  ? `<img src="${esc(b.image)}" alt="" loading="lazy"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+                     <div class="banner-placeholder" style="display:none">${icon('image','ic-lg')}</div>`
+                  : `<div class="banner-placeholder">${icon('image','ic-lg')}</div>`}
+              </div>`).join('')}
+          </div>
+          ${state.banners.length > 1 ? `<div class="banner-dots" id="bannerDots">
+            ${state.banners.map((_,i)=>`<span class="dot ${i===0?'active':''}" data-i="${i}"></span>`).join('')}
+          </div>` : ''}
+        </div>`;
+
+      const slides = $('#bannerSlides');
+      const dots = $$('#bannerDots .dot');
+
+      function goTo(idx){
+        bannerIndex = idx;
+        slides.style.transform = `translateX(-${idx*100}%)`;
+        dots.forEach((d,i)=>d.classList.toggle('active', i===idx));
+      }
+
+      dots.forEach(d=>{
+        d.addEventListener('click', ()=>{
+          goTo(Number(d.dataset.i));
+          if(bannerTimer) clearInterval(bannerTimer);
+          startAuto();
+        });
+      });
+
+      let startX = 0, isDragging = false;
+      slides.addEventListener('touchstart', (e)=>{ startX = e.touches[0].clientX; isDragging = true; });
+      slides.addEventListener('touchend', (e)=>{
+        if(!isDragging) return; isDragging = false;
+        const dx = e.changedTouches[0].clientX - startX;
+        if(Math.abs(dx) > 40){
+          if(dx < 0 && bannerIndex < state.banners.length-1) goTo(bannerIndex+1);
+          else if(dx > 0 && bannerIndex > 0) goTo(bannerIndex-1);
+        }
+      });
+
+      function startAuto(){
+        if(state.banners.length <= 1) return;
+        bannerTimer = setInterval(()=>{
+          goTo((bannerIndex + 1) % state.banners.length);
+        }, 3500);
+      }
+      startAuto();
+    } else {
+      bannerBox.innerHTML = '';
+    }
+  }
+
+  const feat = $('#homeFeatured');
+  if(feat){
+    if(!state.products.length){
+      feat.innerHTML = emptyHTML('কোনো Product নেই','Admin Panel থেকে Product যোগ করুন।','bag');
+    } else {
+      feat.innerHTML = `<div class="pgrid">${state.products.slice(0,4).map(productCardHTML).join('')}</div>`;
+    }
+  }
+
+  const mbBox = $('#homeMb');
+  if(mbBox){
+    if(!state.mbOffers.length) mbBox.innerHTML = emptyHTML('কোনো MB Offer নেই','Admin Panel থেকে Offer যোগ করুন।','sim');
+    else mbBox.innerHTML = `<div class="hscroll">${state.mbOffers.slice(0,6).map(o=>offerCardHTML(o,'mb')).join('')}</div>`;
+  }
+
+  const mnBox = $('#homeMinute');
+  if(mnBox){
+    if(!state.minuteOffers.length) mnBox.innerHTML = emptyHTML('কোনো Minute Offer নেই','Admin Panel থেকে Offer যোগ করুন।','clock');
+    else mnBox.innerHTML = `<div class="hscroll">${state.minuteOffers.slice(0,6).map(o=>offerCardHTML(o,'minute')).join('')}</div>`;
+  }
+}
+
+document.addEventListener('click', (e)=>{
+  const buyOffer = e.target.closest('[data-buy-offer]');
+  if(buyOffer){
+    e.stopPropagation();
+    const kind = buyOffer.dataset.kind;
+    const list = kind==='mb' ? state.mbOffers : state.minuteOffers;
+    const o = list.find(x=>x.id === buyOffer.dataset.buyOffer);
+    if(o) openOfferDetails(kind, o);
+    return;
+  }
+  const offerEl = e.target.closest('[data-offer]');
+  if(offerEl){
+    const kind = offerEl.dataset.kind;
+    const list = kind==='mb' ? state.mbOffers : state.minuteOffers;
+    const o = list.find(x=>x.id === offerEl.dataset.offer);
+    if(o) openOfferDetails(kind, o);
+    return;
+  }
+  const buy = e.target.closest('[data-buy]');
+  if(buy){
+    e.stopPropagation();
+    const p = state.products.find(x=>x.id === buy.dataset.buy);
+    if(p) openProduct(p);
+    return;
+  }
+  const card = e.target.closest('[data-product]');
+  if(card){
+    const p = state.products.find(x=>x.id === card.dataset.product);
+    if(p) openProduct(p);
+  }
+});
+
+/* ==============================================================
+   SHOP
+   ============================================================== */
+let shopFilter = { q:'', cat:'all', sort:'new' };
+function categories(){
+  const set = new Set();
+  state.products.forEach(p=>{ if(p.category) set.add(p.category); });
+  return Array.from(set);
+}
+function renderShop(){
+  const catBox = $('#shopCats'); if(!catBox) return;
+  const cats = categories();
+  catBox.innerHTML = [`<button class="chip ${shopFilter.cat==='all'?'active':''}" data-cat="all">All</button>`]
+    .concat(cats.map(c=>`<button class="chip ${shopFilter.cat===c?'active':''}" data-cat="${esc(c)}">${esc(c)}</button>`)).join('');
+
+  let list = state.products.slice();
+  if(shopFilter.cat!=='all') list = list.filter(p=>p.category===shopFilter.cat);
+  if(shopFilter.q){
+    const q = shopFilter.q.toLowerCase();
+    list = list.filter(p=>(p.name||'').toLowerCase().includes(q) || (p.title||'').toLowerCase().includes(q));
+  }
+  if(shopFilter.sort==='low') list.sort((a,b)=>Number(a.price||0)-Number(b.price||0));
+  else if(shopFilter.sort==='high') list.sort((a,b)=>Number(b.price||0)-Number(a.price||0));
+  else list.sort((a,b)=>ts(b.createdAt)-ts(a.createdAt));
+
+  const sc = $('#shopCount'); if(sc) sc.textContent = list.length + ' products';
+  const grid = $('#shopGrid'); if(!grid) return;
+  if(!list.length){
+    grid.innerHTML = emptyHTML('কোনো Product পাওয়া যায়নি','Admin Panel থেকে Product যোগ করুন।','bag');
+  } else {
+    grid.innerHTML = `<div class="pgrid">${list.map(productCardHTML).join('')}</div>`;
+  }
+}
+$('#shopSearch').addEventListener('input', e=>{ shopFilter.q = e.target.value.trim(); renderShop(); });
+$('#shopCats').addEventListener('click', e=>{ const c = e.target.closest('[data-cat]'); if(!c) return; shopFilter.cat = c.dataset.cat; renderShop(); });
+$('#shopSort').addEventListener('click', ()=>{
+  const order = ['new','low','high'];
+  const labels = { new:'Sort: Newest', low:'Sort: Price ↑', high:'Sort: Price ↓' };
+  shopFilter.sort = order[(order.indexOf(shopFilter.sort)+1)%3];
+  $('#shopSort').textContent = labels[shopFilter.sort];
+  renderShop();
+});
+
+/* ==============================================================
+   OFFERS
+   ============================================================== */
+let offerTab = 'mb', offerOperator = 'all';
+const OPERATORS = ['Robi','Grameenphone','Airtel','Banglalink'];
+function setOfferTab(kind){
+  offerTab = kind; offerOperator = 'all';
+  $$('#offerTabs .tab').forEach(t=>t.classList.toggle('active', t.dataset.otab===kind));
+  renderOffers();
+}
+$('#offerTabs').addEventListener('click', e=>{ const t = e.target.closest('[data-otab]'); if(t) setOfferTab(t.dataset.otab); });
+$('#offerOps').addEventListener('click', e=>{ const c = e.target.closest('[data-op]'); if(!c) return; offerOperator = c.dataset.op; renderOffers(); });
+
+function renderOffers(){
+  const opsBox = $('#offerOps'); if(!opsBox) return;
+  opsBox.innerHTML = [`<button class="chip ${offerOperator==='all'?'active':''}" data-op="all">All</button>`]
+    .concat(OPERATORS.map(o=>`<button class="chip ${offerOperator===o?'active':''}" data-op="${o}">${o}</button>`)).join('');
+
+  const src = offerTab==='mb' ? state.mbOffers : state.minuteOffers;
+  let list = src.slice();
+  if(offerOperator!=='all') list = list.filter(o=>(o.operator||'')===offerOperator);
+
+  const box = $('#offerList'); if(!box) return;
+  if(!list.length){
+    box.innerHTML = emptyHTML(
+      offerTab==='mb'?'কোনো MB Offer নেই':'কোনো Minute Offer নেই',
+      'Admin Panel থেকে Offer যোগ করুন।', offerTab==='mb'?'sim':'clock'
+    );
+  } else {
+    box.innerHTML = `<div class="pgrid">${list.map(o=>offerCardHTML(o, offerTab)).join('')}</div>`;
+  }
+}
+
+/* ==============================================================
+   OVERLAY STACK
+   ============================================================== */
+const stack = [];
+function push(name, params={}){
+  const screen = Screens[name]; if(!screen) return;
+  const el = document.createElement('div');
+  el.className = 'overlay';
+  el.innerHTML = screen.render(params);
+  $('#overlays').appendChild(el);
+  const item = { name, el, params };
+  stack.push(item);
+  requestAnimationFrame(()=>el.classList.add('in'));
+  if(screen.mount) screen.mount(el, params, item);
+  bindOverlayCommon(el);
+  try{ history.pushState({overlay:name},''); }catch(_){}
+  return item;
+}
+function pop(){ const item = stack.pop(); if(!item) return; item.el.classList.remove('in'); setTimeout(()=>item.el.remove(),260); }
+function popAll(){ while(stack.length) pop(); }
+function bindOverlayCommon(el){
+  el.addEventListener('click', e=>{ const b = e.target.closest('[data-pop]'); if(b) pop(); });
+}
+function ovHead(title, opts={}){
+  return `<header class="ov-head">
+    <button class="icon-btn" data-pop>${icon('back')}</button>
+    <h1>${esc(title)}</h1>
+    ${opts.right||''}
+  </header>`;
+}
+
+/* ==============================================================
+   SCREENS
+   ============================================================== */
+const Screens = {};
+
+function openProduct(p){ push('productDetails', { product: p }); }
+
+Screens.productDetails = {
+  render({ product }){
+    const colors = (product.colors||[]).slice(0,5).filter(c => {
+      if(!c) return false;
+      const cands = [c.image, c.img, c.url, c.imageUrl];
+      return cands.some(u => u && typeof u === 'string' && u.trim());
+    });
+    const sizes = product.sizes || [];
+    const firstImg = productImage(product);
+    const off = discountPct(product);
+
+    return `
+    ${ovHead('Product Details')}
+    <div class="ov-body">
+      ${firstImg
+        ? `<img id="pdImg" class="pd-img" src="${esc(firstImg)}" alt=""
+              onerror="this.onerror=null;this.src='';this.style.opacity=0;">`
+        : `<div class="pd-img" style="display:grid;place-items:center;color:var(--muted)">${icon('image','ic-lg')}</div>`}
+
+      ${colors.length > 1 ? `<div class="pd-thumbs" id="pdThumbs">
+        ${colors.map((c,i)=>{
+          const img = c.image || c.img || c.url || c.imageUrl || '';
+          return `<img class="thumb ${i===0?'active':''}" data-i="${i}" src="${esc(img)}" alt="">`;
+        }).join('')}
+      </div>` : ''}
+
+      <h2 class="pd-name">${esc(product.name||'Product')}</h2>
+      <div class="muted small" style="margin-bottom:10px">${esc(product.title||'')}</div>
+
+      <div class="row gap8" style="flex-wrap:wrap">
+        <span class="price">${money(product.price)}</span>
+        ${product.lastPrice ? `<span class="price-old">${money(product.lastPrice)}</span>` : ''}
+        ${off ? `<span class="badge-save">Save ${off}%</span>` : ''}
+      </div>
+
+      <div class="cod-box" style="margin-top:14px">
+        <b>💵 Cash on Delivery</b><br/>
+        এখন শুধু <b>Delivery Charge (${money(product.deliveryCharge||0)})</b> পরিশোধ করুন।
+        পণ্য হাতে পেয়ে বাকি <b>${money(product.price)}</b> Delivery Man কে দিবেন।
+      </div>
+
+      ${sizes.length ? `<div class="opt-label">Size</div>
+      <div class="opt-row" id="pdSizes">
+        ${sizes.map((s,i)=>`<button class="opt ${i===0?'active':''}" data-size="${esc(s)}">${esc(s)}</button>`).join('')}
+      </div>` : ''}
+
+      ${colors.length ? `<div class="opt-label">Color</div>
+      <div class="swatches" id="pdColors">
+        ${colors.map((c,i)=>{
+          const img = c.image || c.img || c.url || c.imageUrl || '';
+          return `<button class="swatch ${i===0?'active':''}" data-ci="${i}" title="${esc(c.name||'')}">
+            <img src="${esc(img)}" alt="${esc(c.name||'')}">
+          </button>`;
+        }).join('')}
+      </div>` : ''}
+
+      <div class="opt-label">Details</div>
+      <div class="card" style="padding:4px 14px">
+        <div class="kv"><span>Product Price (COD)</span><span>${money(product.price)}</span></div>
+        <div class="kv"><span>Delivery Charge (Now)</span><span style="color:var(--blue);font-weight:800">${money(product.deliveryCharge||0)}</span></div>
+        <div class="kv"><span>Commission</span><span style="color:var(--success)">${money(product.commission||0)}</span></div>
+      </div>
+
+      ${product.description ? `<div class="opt-label">Description</div>
+      <div class="card" style="padding:14px;font-size:13.5px;line-height:1.7;color:var(--muted)">${esc(product.description)}</div>` : ''}
+    </div>
+    <div class="ov-foot">
+      <button class="btn" id="pdBuy">Buy Now — Pay only ${money(product.deliveryCharge||0)}</button>
+    </div>`;
+  },
+  mount(el, { product }){
+    const colors = (product.colors||[]).slice(0,5).filter(c => {
+      if(!c) return false;
+      return [c.image, c.img, c.url, c.imageUrl].some(u => u && typeof u === 'string' && u.trim());
+    });
+    const sizes = product.sizes || [];
+    const sel = { colorIndex: 0, size: sizes.length ? sizes[0] : '' };
+
+    const getColorImg = (c) => c.image || c.img || c.url || c.imageUrl || '';
+
+    const thumbs = el.querySelector('#pdThumbs');
+    if(thumbs){
+      thumbs.addEventListener('click', e=>{
+        const t = e.target.closest('.thumb'); if(!t) return;
+        sel.colorIndex = Number(t.dataset.i);
+        const img = el.querySelector('#pdImg'); if(img) img.src = getColorImg(colors[sel.colorIndex]);
+        thumbs.querySelectorAll('.thumb').forEach(x=>x.classList.toggle('active', x===t));
+      });
+    }
+    const sw = el.querySelector('#pdColors');
+    if(sw){
+      sw.addEventListener('click', e=>{
+        const b = e.target.closest('.swatch'); if(!b) return;
+        sel.colorIndex = Number(b.dataset.ci);
+        const img = el.querySelector('#pdImg'); if(img) img.src = getColorImg(colors[sel.colorIndex]);
+        sw.querySelectorAll('.swatch').forEach(x=>x.classList.toggle('active', x===b));
+        if(thumbs) thumbs.querySelectorAll('.thumb').forEach((x,i)=>x.classList.toggle('active', i===sel.colorIndex));
+      });
+    }
+    const sz = el.querySelector('#pdSizes');
+    if(sz){
+      sz.addEventListener('click', e=>{
+        const b = e.target.closest('.opt'); if(!b) return;
+        sel.size = b.dataset.size;
+        sz.querySelectorAll('.opt').forEach(x=>x.classList.toggle('active', x===b));
+      });
+    }
+
+    el.querySelector('#pdBuy').addEventListener('click', ()=>{
+      const color = colors.length ? colors[sel.colorIndex] : null;
+      push('orderForm', {
+        product,
+        selected: {
+          size: sel.size,
+          colorName: color ? (color.name||'') : '',
+          colorImage: color ? getColorImg(color) : productImage(product)
+        }
+      });
+    });
+  }
+};
+
+Screens.orderForm = {
+  render({ product, selected }){
+    const img = selected.colorImage || productImage(product);
+    return `
+    ${ovHead('Order Form')}
+    <div class="ov-body">
+      <div class="sum-card">
+        <div class="sum-prod">
+          ${img ? `<img src="${esc(img)}" alt="" onerror="this.style.opacity=0">`
+                : `<div style="width:64px;height:64px;border-radius:12px;background:var(--card-2);display:grid;place-items:center">${icon('image','ic-sm')}</div>`}
+          <div class="grow">
+            <div style="font-size:14.5px;font-weight:700">${esc(product.name||'Product')}</div>
+            <div class="muted small" style="margin-top:4px">
+              ${selected.size ? 'Size: '+esc(selected.size) : ''}${selected.size && selected.colorName ? ' • ' : ''}${selected.colorName ? 'Color: '+esc(selected.colorName) : ''}
+            </div>
+            <div style="font-weight:800;color:var(--blue);margin-top:6px">${money(product.price)}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="opt-label">Customer Information</div>
+      <div class="field">${icon('user')}<input id="ofName" type="text" placeholder="Name" value="${esc(state.profile?.name||'')}" /></div>
+      <div class="field">${icon('phone')}<input id="ofPhone" type="tel" inputmode="tel" placeholder="Phone Number" value="${esc(state.profile?.phone||'')}" /></div>
+      <div class="field">${icon('home')}<input id="ofDistrict" type="text" placeholder="District" /></div>
+      <div class="field">${icon('home')}<input id="ofThana" type="text" placeholder="Thana / Upazila" /></div>
+      <div class="field" style="align-items:flex-start">${icon('edit')}<textarea id="ofAddress" placeholder="Full Address"></textarea></div>
+      <div id="ofErr" class="err-text hidden"></div>
+    </div>
+    <div class="ov-foot"><button class="btn" id="ofNext">Next</button></div>`;
+  },
+  mount(el, params){
+    el.querySelector('#ofNext').addEventListener('click', ()=>{
+      const name = el.querySelector('#ofName').value.trim();
+      const phone = el.querySelector('#ofPhone').value.trim();
+      const district = el.querySelector('#ofDistrict').value.trim();
+      const thana = el.querySelector('#ofThana').value.trim();
+      const address = el.querySelector('#ofAddress').value.trim();
+      const err = el.querySelector('#ofErr');
+      err.classList.add('hidden');
+      if(!name || !phone || !district || !thana || !address){ err.textContent='সব তথ্য পূরণ করুন।'; err.classList.remove('hidden'); return; }
+      if(!/^\+?\d{10,15}$/.test(phone.replace(/[\s-]/g,''))){ err.textContent='সঠিক Phone Number দিন।'; err.classList.remove('hidden'); return; }
+      push('orderSummary', { ...params, customer: { name, phone, district, thana, address } });
+    });
+  }
+};
+
+Screens.orderSummary = {
+  render({ product, selected, customer }){
+    const img = selected.colorImage || productImage(product);
+    const price = Number(product.price||0);
+    const delivery = Number(product.deliveryCharge||0);
+    return `
+    ${ovHead('Order Summary')}
+    <div class="ov-body">
+      <div class="sum-card">
+        <div class="sum-prod">
+          ${img ? `<img src="${esc(img)}" alt="" onerror="this.style.opacity=0">`
+                : `<div style="width:64px;height:64px;border-radius:12px;background:var(--card-2);display:grid;place-items:center">${icon('image','ic-sm')}</div>`}
+          <div class="grow">
+            <div style="font-size:14.5px;font-weight:700">${esc(product.name||'Product')}</div>
+            <div class="muted small" style="margin-top:4px">
+              ${selected.size ? 'Size: '+esc(selected.size) : ''}${selected.size && selected.colorName ? ' • ' : ''}${selected.colorName ? 'Color: '+esc(selected.colorName) : ''}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="opt-label">Customer</div>
+      <div class="card" style="padding:4px 14px">
+        <div class="kv"><span>Name</span><span>${esc(customer.name)}</span></div>
+        <div class="kv"><span>Phone</span><span>${esc(customer.phone)}</span></div>
+        <div class="kv"><span>District</span><span>${esc(customer.district)}</span></div>
+        <div class="kv"><span>Thana</span><span>${esc(customer.thana)}</span></div>
+        <div class="kv" style="align-items:flex-start"><span>Address</span><span style="text-align:right;max-width:60%">${esc(customer.address)}</span></div>
+      </div>
+
+      <div class="opt-label">Payment Summary</div>
+      <div class="card" style="padding:4px 14px">
+        <div class="kv"><span>Product Price</span><span>${money(price)}</span></div>
+        <div class="kv"><span>Delivery Charge</span><span style="color:var(--blue);font-weight:800">${money(delivery)}</span></div>
+        <div class="kv"><span style="font-weight:800;color:var(--text)">Payable Now</span><span style="color:var(--blue);font-size:16px;font-weight:800">${money(delivery)}</span></div>
+      </div>
+
+      <div class="cod-box" style="margin-top:14px">
+        <b>💵 Cash on Delivery</b><br/>
+        এখন <b>Delivery Charge (${money(delivery)})</b> দিন।<br/>
+        পণ্য হাতে পাওয়ার পর <b>${money(price)}</b> Delivery Man কে দিবেন।
+      </div>
+    </div>
+    <div class="ov-foot"><button class="btn" id="osNext">Select Payment Method</button></div>`;
+  },
+  mount(el, params){
+    el.querySelector('#osNext').addEventListener('click', ()=>{
+      const { product, selected, customer } = params;
+      const price = Number(product.price||0);
+      const delivery = Number(product.deliveryCharge||0);
+
+      openPayment({
+        title: 'Delivery Charge Payment',
+        amount: delivery,
+        codAmount: price,
+        buildOrder: () => ({
+          collection: COLLECTIONS.shopping,
+          title: product.name || 'Product Order',
+          total: price + delivery,
+          deliveryAmount: delivery,
+          data: {
+            type: 'shopping',
+            orderType: 'cod',
+            productId: product.id,
+            product: {
+              id: product.id, name: product.name||'', title: product.title||'',
+              image: selected.colorImage || productImage(product),
+              price: price, lastPrice: Number(product.lastPrice||0),
+              deliveryCharge: delivery, commission: Number(product.commission||0)
+            },
+            selected: {
+              size: selected.size||'', color: selected.colorName||'',
+              image: selected.colorImage || productImage(product)
+            },
+            customer,
+            amount: price,
+            deliveryCharge: delivery,
+            totalPayable: delivery,
+            codAmount: price,
+            commission: Number(product.commission||0)
+          }
+        }),
+        onDone: (orderId, method, trxId) => {
+          popAll();
+          push('orderConfirm', {
+            kind: 'shopping', orderId, method, trxId,
+            amount: delivery, codAmount: price,
+            product: {
+              name: product.name,
+              image: selected.colorImage || productImage(product),
+              size: selected.size,
+              color: selected.colorName
+            },
+            deliveryCharge: delivery
+          });
+        }
+      });
+    });
+  }
+};
+
+function openPayment(ctx){ push('paymentMethod', ctx); }
+
+Screens.paymentMethod = {
+  render(ctx){
+    return `
+    ${ovHead('Payment Method')}
+    <div class="ov-body">
+      <div class="balance-card" style="margin-bottom:18px">
+        <div class="grow">
+          <div class="bc-label">Payable Now (Delivery Charge)</div>
+          <div class="bc-amount">${money(ctx.amount)}</div>
+          ${ctx.codAmount ? `<div style="margin-top:6px;font-size:12px;opacity:.85">COD: ${money(ctx.codAmount)}</div>` : ''}
+        </div>
+      </div>
+
+      <div class="pm" data-pm="bkash">
+        <div class="logo bkash">bKash</div>
+        <div class="grow"><div style="font-weight:700;font-size:14.5px">bKash</div><div class="muted small">Manual</div></div>
+        <div class="radio"></div>
+      </div>
+      <div class="pm" data-pm="nagad">
+        <div class="logo nagad">Nagad</div>
+        <div class="grow"><div style="font-weight:700;font-size:14.5px">Nagad</div><div class="muted small">Manual</div></div>
+        <div class="radio"></div>
+      </div>
+      <div class="pm" data-pm="rocket">
+        <div class="logo rocket">Rocket</div>
+        <div class="grow"><div style="font-weight:700;font-size:14.5px">Rocket</div><div class="muted small">Manual</div></div>
+        <div class="radio"></div>
+      </div>
+      <div class="pm" data-pm="balance">
+        <div class="logo bal">৳</div>
+        <div class="grow"><div style="font-weight:700;font-size:14.5px">Balance</div><div class="muted small">Available: ${money(currentBalance())}</div></div>
+        <div class="radio"></div>
+      </div>
+    </div>
+    <div class="ov-foot"><button class="btn" id="pmNext" disabled>Next</button></div>`;
+  },
+  mount(el, ctx){
+    let chosen = null;
+    el.querySelectorAll('.pm').forEach(pm=>{
+      pm.addEventListener('click', ()=>{
+        el.querySelectorAll('.pm').forEach(x=>x.classList.remove('active'));
+        pm.classList.add('active');
+        chosen = pm.dataset.pm;
+        el.querySelector('#pmNext').disabled = false;
+      });
+    });
+    el.querySelector('#pmNext').addEventListener('click', ()=>{
+      if(!chosen) return;
+      if(chosen === 'balance') push('balancePay', ctx);
+      else push('manualPay', { ...ctx, method: chosen });
+    });
+  }
+};
+
+Screens.manualPay = {
+  render(ctx){
+    const method = ctx.method;
+    const cfg = (state.payments && state.payments[method]) || {};
+    const number = cfg.number || '';
+    const instructions = cfg.instructions || '';
+    const labelMap = { bkash:'bKash', nagad:'Nagad', rocket:'Rocket' };
+    const brandMap = { bkash:'#E2136E', nagad:'#EC1C24', rocket:'#8B5CF6' };
+    const label = labelMap[method] || method;
+    const brand = brandMap[method] || '#0B5FFF';
+
+    return `
+    ${ovHead(label + ' Payment')}
+    <div class="ov-body">
+      <div class="card" style="padding:16px;margin-bottom:16px">
+        <div class="row gap12" style="margin-bottom:14px">
+          <div style="width:46px;height:46px;border-radius:13px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:11px;background:${brand}">${label}</div>
+          <div class="grow">
+            <div style="font-weight:800;font-size:15px">Pay Delivery Charge</div>
+            <div class="muted small">Merchant: J-Eo Future</div>
+          </div>
+        </div>
+        ${number
+          ? `<div class="kv"><span>Payment Number</span><span style="color:var(--blue);font-weight:800">${esc(number)}</span></div>`
+          : `<div class="warn-box">Admin Panel থেকে ${label} Number Configure করা হয়নি। Live Support-এ যোগাযোগ করুন।</div>`}
+        <div class="kv"><span>Payable Now</span><span style="color:var(--blue);font-weight:800">${money(ctx.amount)}</span></div>
+        ${ctx.codAmount ? `<div class="kv"><span>COD Amount</span><span>${money(ctx.codAmount)}</span></div>` : ''}
+        ${cfg.link ? `<div class="kv"><span>Payment Link</span><span><a href="${esc(cfg.link)}" target="_blank" rel="noopener">Open Link</a></span></div>` : ''}
+      </div>
+
+      ${instructions ? `<div class="notice" style="margin-bottom:16px">${esc(instructions)}</div>`
+        : `<div class="notice" style="margin-bottom:16px">উপরের Number-এ ${money(ctx.amount)} Send Money করুন (শুধু Delivery Charge)। তারপর Transaction ID নিচে লিখুন।</div>`}
+
+      <div class="field-label">Transaction ID</div>
+      <div class="field">${icon('doc')}<input id="mpTrx" type="text" placeholder="Transaction ID" autocomplete="off" /></div>
+      <div id="mpErr" class="err-text hidden"></div>
+
+      <div class="cod-box">
+        <b>মনে রাখবেন:</b> এখন শুধু Delivery Charge দিচ্ছেন। পণ্য হাতে পাওয়ার পর বাকি টাকা Delivery Man কে দিবেন।
+      </div>
+    </div>
+    <div class="ov-foot"><button class="btn" id="mpSubmit">Submit</button></div>`;
+  },
+  mount(el, ctx){
+    el.querySelector('#mpSubmit').addEventListener('click', async (e)=>{
+      const trx = el.querySelector('#mpTrx').value.trim();
+      const err = el.querySelector('#mpErr');
+      err.classList.add('hidden');
+      if(trx.length < 4){ err.textContent='সঠিক Transaction ID দিন।'; err.classList.remove('hidden'); return; }
+      busy(e.currentTarget, true);
+      try{
+        const order = ctx.buildOrder();
+        const id = await Money.placeCodOrder(order, ctx.method, trx, ctx.amount);
+        ctx.onDone(id, ctx.method, trx);
+      }catch(ex){ console.error(ex); toast('Order তৈরি করা যায়নি।','err'); }
+      finally{ busy(e.currentTarget, false); }
+    });
+  }
+};
+
+Screens.balancePay = {
+  render(ctx){
+    const bal = currentBalance();
+    const enough = bal >= Number(ctx.amount);
+    return `
+    ${ovHead('Balance Payment')}
+    <div class="ov-body">
+      <div class="balance-card" style="margin-bottom:18px">
+        <div class="grow">
+          <div class="bc-label">Available Balance</div>
+          <div class="bc-amount">${money(bal)}</div>
+        </div>
+      </div>
+      <div class="card" style="padding:4px 14px;margin-bottom:16px">
+        <div class="kv"><span>Delivery Charge (Now)</span><span style="color:var(--blue);font-weight:800">${money(ctx.amount)}</span></div>
+        <div class="kv"><span>After Payment</span><span>${money(Math.max(0, bal - Number(ctx.amount)))}</span></div>
+        ${ctx.codAmount ? `<div class="kv"><span>COD Amount (Later)</span><span>${money(ctx.codAmount)}</span></div>` : ''}
+      </div>
+      ${enough
+        ? `<div class="cod-box">Balance থেকে শুধু Delivery Charge কেটে নেওয়া হবে। বাকি টাকা পণ্য হাতে পেয়ে দিবেন।</div>`
+        : `<div class="warn-box"><b>Insufficient Balance</b><br/>Balance যথেষ্ট নয়। Add Balance করুন।</div>`}
+    </div>
+    <div class="ov-foot">
+      ${enough ? `<button class="btn" id="bpConfirm">Confirm Payment</button>`
+        : `<button class="btn" id="bpAdd">Add Balance</button>`}
+    </div>`;
+  },
+  mount(el, ctx){
+    const btn = el.querySelector('#bpConfirm');
+    if(btn){
+      btn.addEventListener('click', async (e)=>{
+        busy(e.currentTarget, true);
+        try{
+          const order = ctx.buildOrder();
+          const id = await Money.placeCodOrder(order, 'balance', '', ctx.amount);
+          await refreshProfile();
+          ctx.onDone(id, 'balance', '');
+        }catch(ex){
+          if(String(ex.message).includes('INSUFFICIENT_BALANCE')) toast('Insufficient Balance','err');
+          else { console.error(ex); toast('Payment ব্যর্থ।','err'); }
+        }finally{ busy(e.currentTarget, false); }
+      });
+    }
+    const add = el.querySelector('#bpAdd');
+    if(add) add.addEventListener('click', ()=>{ pop(); openAddBalance(); });
+  }
+};
+
+Screens.orderConfirm = {
+  render({ orderId, method, trxId, amount, codAmount, product, deliveryCharge }){
+    return `
+    ${ovHead('Order Confirmation')}
+    <div class="ov-body">
+      <div style="text-align:center;padding:10px 0 22px">
+        <div style="width:84px;height:84px;border-radius:28px;background:rgba(22,163,74,.14);color:var(--success);display:grid;place-items:center;margin:0 auto 16px">
+          ${icon('check','ic-lg')}
+        </div>
+        <h2 style="margin:0 0 6px;font-size:19px;font-weight:800">Order Placed!</h2>
+        <p class="muted small" style="margin:0">আপনার Order সফলভাবে গ্রহণ করা হয়েছে।</p>
+      </div>
+
+      <div class="card" style="padding:4px 14px;margin-bottom:14px">
+        <div class="kv"><span>Order ID</span><span style="color:var(--blue)">${esc(orderId)}</span></div>
+        <div class="kv"><span>Status</span><span>${statusBadge('pending')}</span></div>
+        <div class="kv"><span>Date</span><span>${esc(fmtDate(new Date()))}</span></div>
+      </div>
+
+      ${product ? `<div class="sum-card">
+        <div class="sum-prod">
+          ${product.image ? `<img src="${esc(product.image)}" alt="" onerror="this.style.opacity=0">` : ''}
+          <div class="grow">
+            <div style="font-size:14.5px;font-weight:700">${esc(product.name||'')}</div>
+            <div class="muted small" style="margin-top:4px">
+              ${product.size ? 'Size: '+esc(product.size) : ''}${product.size && product.color ? ' • ' : ''}${product.color ? 'Color: '+esc(product.color) : ''}
+            </div>
+          </div>
+        </div>
+      </div>` : ''}
+
+      <div class="card" style="padding:4px 14px">
+        <div class="kv"><span>Delivery Charge Paid</span><span style="color:var(--success);font-weight:800">${money(deliveryCharge)}</span></div>
+        ${codAmount ? `<div class="kv"><span>COD Amount (Pay Later)</span><span style="color:var(--warn);font-weight:800">${money(codAmount)}</span></div>` : ''}
+        <div class="kv"><span>Payment Method</span><span style="text-transform:capitalize">${esc(method)}</span></div>
+        ${trxId ? `<div class="kv"><span>Transaction ID</span><span>${esc(trxId)}</span></div>` : ''}
+      </div>
+
+      <div class="cod-box" style="margin-top:14px">
+        <b>💵 Cash on Delivery</b><br/>
+        Delivery Charge পরিশোধ হয়েছে। পণ্য হাতে পেয়ে বাকি <b>${money(codAmount||0)}</b> Delivery Man কে দিবেন।
+      </div>
+    </div>
+    <div class="ov-foot" style="display:flex;gap:10px">
+      <button class="btn ghost" id="ocHome" style="flex:1">Home</button>
+      <button class="btn" id="ocTrack" style="flex:1">Track Order</button>
+    </div>`;
+  },
+  mount(el){
+    el.querySelector('#ocHome').addEventListener('click', ()=>{ popAll(); tab('home'); refreshProfile(); });
+    el.querySelector('#ocTrack').addEventListener('click', ()=>{ popAll(); tab('history'); setHistoryTab('shopping'); });
+  }
+};
+
+function openOfferDetails(kind, offer){ push(kind==='mb'?'mbDetails':'minuteDetails', { offer, kind }); }
+
+function offerDetailRender(kind, offer){
+  const isMb = kind==='mb';
+  const big = isMb ? (offer.mb || offer.data || '—') : `${offer.minutes || offer.minute || 0} Minutes`;
+  return `
+  ${ovHead(isMb ? 'MB Offer Details' : 'Minute Offer Details')}
+  <div class="ov-body">
+    <div class="card" style="padding:18px;margin-bottom:16px">
+      <div class="row" style="justify-content:space-between;margin-bottom:12px">
+        <span class="badge processing" style="font-size:12px">${esc(offer.operator||'')}</span>
+        <span class="muted small">${esc(offer.validity||'')}</span>
+      </div>
+      <div style="font-size:30px;font-weight:800;color:var(--blue)">${esc(big)}</div>
+      <div style="font-size:15px;font-weight:700;margin-top:8px">${esc(offer.title||'')}</div>
+      <div class="row" style="gap:16px;margin-top:14px">
+        <div><div class="muted tiny">Price</div><div style="font-weight:800;font-size:16px">${money(offer.price)}</div></div>
+        <div><div class="muted tiny">Commission</div><div style="font-weight:800;font-size:16px;color:var(--success)">${money(offer.commission)}</div></div>
+      </div>
+    </div>
+
+    ${offer.description ? `<div class="card" style="padding:14px;font-size:13.5px;line-height:1.75;color:var(--muted);margin-bottom:16px">${esc(offer.description)}</div>` : ''}
+
+    <div class="field-label">Mobile Number</div>
+    <div class="field">${icon('phone')}<input id="odNumber" type="tel" inputmode="tel" placeholder="Enter Mobile Number" value="${esc(state.profile?.phone||'')}" /></div>
+    <div id="odErr" class="err-text hidden"></div>
+
+    <div class="warn-box">
+      আপনার SIM-এ Loan থাকলে পরিশোধ করে Offer টি কিনুন। ৫–১০ মিনিটের মধ্যে Active না হলে Live Support-এ যোগাযোগ করুন।
+    </div>
+  </div>
+  <div class="ov-foot"><button class="btn" id="odNext">Next</button></div>`;
+}
+
+function offerDetailMount(el, { offer, kind }, collectionName, label){
+  el.querySelector('#odNext').addEventListener('click', ()=>{
+    const num = el.querySelector('#odNumber').value.trim();
+    const err = el.querySelector('#odErr');
+    err.classList.add('hidden');
+    if(!/^\+?\d{10,15}$/.test(num.replace(/[\s-]/g,''))){ err.textContent='সঠিক Mobile Number দিন।'; err.classList.remove('hidden'); return; }
+    const total = Number(offer.price||0);
+    openPayment({
+      title: label + ' Payment',
+      amount: total, codAmount: 0,
+      buildOrder: () => ({
+        collection: collectionName, title: offer.title || label, total,
+        data: {
+          type: kind, offerId: offer.id,
+          offer: { id: offer.id, operator: offer.operator||'', title: offer.title||'', mb: offer.mb||'',
+            minutes: offer.minutes||offer.minute||'', validity: offer.validity||'',
+            price: total, commission: Number(offer.commission||0) },
+          mobileNumber: num, amount: total, deliveryCharge: 0, commission: Number(offer.commission||0)
+        }
+      }),
+      onDone: (orderId, method, trxId) => {
+        popAll();
+        push('orderConfirm', { kind, orderId, method, trxId, amount: total, codAmount: 0, product: null, deliveryCharge: 0 });
+      }
+    });
+  });
+}
+
+Screens.mbDetails = { render({offer}){ return offerDetailRender('mb', offer); }, mount(el,p){ offerDetailMount(el,p,COLLECTIONS.mb,'MB Offer'); } };
+Screens.minuteDetails = { render({offer}){ return offerDetailRender('minute', offer); }, mount(el,p){ offerDetailMount(el,p,COLLECTIONS.minute,'Minute Offer'); } };
+
+function openAddBalance(){ push('addBalance'); }
+
+Screens.addBalance = {
+  render(){
+    const quick = [50, 100, 500, 1000, 2000, 5000, 10000, 25000];
+    return `
+    ${ovHead('Add Balance')}
+    <div class="ov-body">
+      <div class="balance-card" style="margin-bottom:18px">
+        <div class="grow">
+          <div class="bc-label">Available Balance</div>
+          <div class="bc-amount">${money(currentBalance())}</div>
+        </div>
+      </div>
+      <div class="field-label">Amount</div>
+      <div class="field"><span style="font-weight:800;color:var(--blue)">৳</span><input id="abAmount" type="number" inputmode="numeric" placeholder="Enter amount" /></div>
+      <div class="opt-row" style="margin-bottom:8px">
+        ${quick.map(q=>`<button class="opt" data-q="${q}">৳${q.toLocaleString()}</button>`).join('')}
+      </div>
+      <div class="muted tiny" style="margin:6px 0 0 4px">Min ${money(MIN_ADD_BALANCE)} • Max ${money(MAX_ADD_BALANCE)}</div>
+      <div id="abErr" class="err-text hidden" style="margin-top:10px"></div>
+    </div>
+    <div class="ov-foot"><button class="btn" id="abNext">Next</button></div>`;
+  },
+  mount(el){
+    const input = el.querySelector('#abAmount');
+    el.querySelectorAll('[data-q]').forEach(b=>{
+      b.addEventListener('click', ()=>{ input.value = b.dataset.q; el.querySelectorAll('[data-q]').forEach(x=>x.classList.toggle('active', x===b)); });
+    });
+    input.addEventListener('input', ()=>el.querySelectorAll('[data-q]').forEach(x=>x.classList.remove('active')));
+    el.querySelector('#abNext').addEventListener('click', ()=>{
+      const amount = Number(input.value);
+      const err = el.querySelector('#abErr'); err.classList.add('hidden');
+      if(!amount || amount < MIN_ADD_BALANCE){ err.textContent=`সর্বনিম্ন ${money(MIN_ADD_BALANCE)}।`; err.classList.remove('hidden'); return; }
+      if(amount > MAX_ADD_BALANCE){ err.textContent=`সর্বোচ্চ ${money(MAX_ADD_BALANCE)}।`; err.classList.remove('hidden'); return; }
+      push('addBalanceMethod', { amount });
+    });
+  }
+};
+
+Screens.addBalanceMethod = {
+  render({ amount }){
+    return `
+    ${ovHead('Add Balance - Payment Method')}
+    <div class="ov-body">
+      <div class="balance-card" style="margin-bottom:18px">
+        <div class="grow">
+          <div class="bc-label">Amount to Add</div>
+          <div class="bc-amount">${money(amount)}</div>
+        </div>
+      </div>
+      <div class="pm" data-pm="bkash">
+        <div class="logo bkash">bKash</div>
+        <div class="grow"><div style="font-weight:700;font-size:14.5px">bKash</div><div class="muted small">Manual</div></div>
+        <div class="radio"></div>
+      </div>
+      <div class="pm" data-pm="nagad">
+        <div class="logo nagad">Nagad</div>
+        <div class="grow"><div style="font-weight:700;font-size:14.5px">Nagad</div><div class="muted small">Manual</div></div>
+        <div class="radio"></div>
+      </div>
+      <div class="pm" data-pm="rocket">
+        <div class="logo rocket">Rocket</div>
+        <div class="grow"><div style="font-weight:700;font-size:14.5px">Rocket</div><div class="muted small">Manual</div></div>
+        <div class="radio"></div>
+      </div>
+    </div>
+    <div class="ov-foot"><button class="btn" id="abmNext" disabled>Next</button></div>`;
+  },
+  mount(el, { amount }){
+    let chosen = null;
+    el.querySelectorAll('.pm').forEach(pm=>{
+      pm.addEventListener('click', ()=>{
+        el.querySelectorAll('.pm').forEach(x=>x.classList.remove('active'));
+        pm.classList.add('active');
+        chosen = pm.dataset.pm;
+        el.querySelector('#abmNext').disabled = false;
+      });
+    });
+    el.querySelector('#abmNext').addEventListener('click', ()=>{
+      if(!chosen) return;
+      push('addBalanceManual', { amount, method: chosen });
+    });
+  }
+};
+
+Screens.addBalanceManual = {
+  render({ amount, method }){
+    const cfg = (state.payments && state.payments[method]) || {};
+    const number = cfg.number || '';
+    const instructions = cfg.instructions || '';
+    const labelMap = { bkash:'bKash', nagad:'Nagad', rocket:'Rocket' };
+    const brandMap = { bkash:'#E2136E', nagad:'#EC1C24', rocket:'#8B5CF6' };
+    const label = labelMap[method] || method;
+    const brand = brandMap[method] || '#0B5FFF';
+
+    return `
+    ${ovHead(label + ' Payment')}
+    <div class="ov-body">
+      <div class="card" style="padding:16px;margin-bottom:16px">
+        <div class="row gap12" style="margin-bottom:14px">
+          <div style="width:46px;height:46px;border-radius:13px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:11px;background:${brand}">${label}</div>
+          <div class="grow">
+            <div style="font-weight:800;font-size:15px">Add Balance</div>
+            <div class="muted small">Merchant: J-Eo Future</div>
+          </div>
+        </div>
+        ${number
+          ? `<div class="kv"><span>Payment Number</span><span style="color:var(--blue);font-weight:800">${esc(number)}</span></div>`
+          : `<div class="warn-box">Admin Panel থেকে ${label} Number Configure করা হয়নি। Live Support-এ যোগাযোগ করুন।</div>`}
+        <div class="kv"><span>Amount</span><span style="color:var(--blue);font-weight:800">${money(amount)}</span></div>
+      </div>
+
+      ${instructions ? `<div class="notice" style="margin-bottom:16px">${esc(instructions)}</div>`
+        : `<div class="notice" style="margin-bottom:16px">উপরের Number-এ ${money(amount)} Send Money করুন। তারপর Transaction ID নিচে লিখুন।</div>`}
+
+      <div class="field-label">Transaction ID</div>
+      <div class="field">${icon('doc')}<input id="abmTrx" type="text" placeholder="Transaction ID" autocomplete="off" /></div>
+      <div id="abmErr" class="err-text hidden"></div>
+    </div>
+    <div class="ov-foot"><button class="btn" id="abmSubmit">Submit</button></div>`;
+  },
+  mount(el, { amount, method }){
+    el.querySelector('#abmSubmit').addEventListener('click', async (e)=>{
+      const trx = el.querySelector('#abmTrx').value.trim();
+      const err = el.querySelector('#abmErr');
+      err.classList.add('hidden');
+      if(trx.length < 4){ err.textContent='সঠিক Transaction ID দিন।'; err.classList.remove('hidden'); return; }
+      busy(e.currentTarget, true);
+      try{
+        await Money.requestAddBalance(amount, method, trx);
+        popAll();
+        toast('Add Balance Request পাঠানো হয়েছে। Admin Approve করলে Balance যোগ হবে।', 'ok');
+        setTimeout(()=>{ tab('history'); setHistoryTab('balance'); }, 1200);
+      }catch(ex){ console.error(ex); toast('Request পাঠানো যায়নি।','err'); }
+      finally{ busy(e.currentTarget, false); }
+    });
+  }
+};
+
+/* ==============================================================
+   WITHDRAW
+   ============================================================== */
+function openWithdraw(){ push('withdraw'); }
+
+Screens.withdraw = {
+  render(){
+    const quick = [100, 500, 1000, 2000, 5000, 10000];
+    return `
+    ${ovHead('Withdraw')}
+    <div class="ov-body">
+      <div class="balance-card" style="margin-bottom:18px">
+        <div class="grow">
+          <div class="bc-label">Available Balance</div>
+          <div class="bc-amount">${money(currentBalance())}</div>
+        </div>
+      </div>
+      <div class="field-label">Amount</div>
+      <div class="field"><span style="font-weight:800;color:var(--blue)">৳</span><input id="wdAmount" type="number" inputmode="numeric" placeholder="Enter amount" /></div>
+      <div class="opt-row" style="margin-bottom:8px">
+        ${quick.map(q=>`<button class="opt" data-q="${q}">৳${q.toLocaleString()}</button>`).join('')}
+      </div>
+      <div class="muted tiny" style="margin:6px 0 0 4px">Min ${money(MIN_WITHDRAW)} • Max ${money(MAX_WITHDRAW)}</div>
+      <div id="wdErr" class="err-text hidden" style="margin-top:10px"></div>
+    </div>
+    <div class="ov-foot"><button class="btn" id="wdNext">Next</button></div>`;
+  },
+  mount(el){
+    const input = el.querySelector('#wdAmount');
+    el.querySelectorAll('[data-q]').forEach(b=>{
+      b.addEventListener('click', ()=>{ input.value = b.dataset.q; el.querySelectorAll('[data-q]').forEach(x=>x.classList.toggle('active', x===b)); });
+    });
+    input.addEventListener('input', ()=>el.querySelectorAll('[data-q]').forEach(x=>x.classList.remove('active')));
+    el.querySelector('#wdNext').addEventListener('click', ()=>{
+      const amount = Number(input.value);
+      const err = el.querySelector('#wdErr'); err.classList.add('hidden');
+      if(!amount || amount < MIN_WITHDRAW){ err.textContent=`সর্বনিম্ন ${money(MIN_WITHDRAW)}।`; err.classList.remove('hidden'); return; }
+      if(amount > MAX_WITHDRAW){ err.textContent=`সর্বোচ্চ ${money(MAX_WITHDRAW)}।`; err.classList.remove('hidden'); return; }
+      if(amount > currentBalance()){ err.textContent='পর্যাপ্ত Balance নেই।'; err.classList.remove('hidden'); return; }
+      push('withdrawMethod', { amount });
+    });
+  }
+};
+
+Screens.withdrawMethod = {
+  render({ amount }){
+    return `
+    ${ovHead('Withdraw Method')}
+    <div class="ov-body">
+      <div class="balance-card" style="margin-bottom:18px">
+        <div class="grow">
+          <div class="bc-label">Amount to Withdraw</div>
+          <div class="bc-amount">${money(amount)}</div>
+        </div>
+      </div>
+      <div class="pm" data-pm="bkash">
+        <div class="logo bkash">bKash</div>
+        <div class="grow"><div style="font-weight:700;font-size:14.5px">bKash</div></div>
+        <div class="radio"></div>
+      </div>
+      <div class="pm" data-pm="nagad">
+        <div class="logo nagad">Nagad</div>
+        <div class="grow"><div style="font-weight:700;font-size:14.5px">Nagad</div></div>
+        <div class="radio"></div>
+      </div>
+      <div class="pm" data-pm="rocket">
+        <div class="logo rocket">Rocket</div>
+        <div class="grow"><div style="font-weight:700;font-size:14.5px">Rocket</div></div>
+        <div class="radio"></div>
+      </div>
+    </div>
+    <div class="ov-foot"><button class="btn" id="wdmNext" disabled>Next</button></div>`;
+  },
+  mount(el, { amount }){
+    let chosen = null;
+    el.querySelectorAll('.pm').forEach(pm=>{
+      pm.addEventListener('click', ()=>{
+        el.querySelectorAll('.pm').forEach(x=>x.classList.remove('active'));
+        pm.classList.add('active');
+        chosen = pm.dataset.pm;
+        el.querySelector('#wdmNext').disabled = false;
+      });
+    });
+    el.querySelector('#wdmNext').addEventListener('click', ()=>{
+      if(!chosen) return;
+      push('withdrawForm', { amount, method: chosen });
+    });
+  }
+};
+
+Screens.withdrawForm = {
+  render({ amount, method }){
+    const labelMap = { bkash:'bKash', nagad:'Nagad', rocket:'Rocket' };
+    const label = labelMap[method] || method;
+    return `
+    ${ovHead(label + ' Withdraw')}
+    <div class="ov-body">
+      <div class="balance-card" style="margin-bottom:18px">
+        <div class="grow">
+          <div class="bc-label">Amount</div>
+          <div class="bc-amount">${money(amount)}</div>
+        </div>
+      </div>
+      <div class="field-label">Your ${label} Number</div>
+      <div class="field">${icon('phone')}<input id="wdNumber" type="tel" inputmode="tel" placeholder="Enter your ${label} number" value="${esc(state.profile?.phone||'')}" /></div>
+      <div id="wdFormErr" class="err-text hidden"></div>
+      <div class="warn-box">
+        Admin আপনার Request যাচাই করে Manual Payment করবে। ২৪ ঘন্টার মধ্যে Withdraw সম্পন্ন হবে।
+      </div>
+    </div>
+    <div class="ov-foot"><button class="btn" id="wdSubmit">Submit Request</button></div>`;
+  },
+  mount(el, { amount, method }){
+    el.querySelector('#wdSubmit').addEventListener('click', async (e)=>{
+      const num = el.querySelector('#wdNumber').value.trim();
+      const err = el.querySelector('#wdFormErr');
+      err.classList.add('hidden');
+      if(!/^\+?\d{10,15}$/.test(num.replace(/[\s-]/g,''))){ err.textContent='সঠিক Number দিন।'; err.classList.remove('hidden'); return; }
+      busy(e.currentTarget, true);
+      try{
+        await Money.requestWithdraw(amount, method, num);
+        await refreshProfile();
+        popAll();
+        toast('Withdraw Request পাঠানো হয়েছে।', 'ok');
+        setTimeout(()=>{ tab('history'); setHistoryTab('withdrawal'); }, 1200);
+      }catch(ex){
+        if(String(ex.message).includes('INSUFFICIENT_BALANCE')) toast('Insufficient Balance','err');
+        else { console.error(ex); toast('Withdraw Request ব্যর্থ।','err'); }
+      }
+      finally{ busy(e.currentTarget, false); }
+    });
+  }
+};
+
+/* ==============================================================
+   🎯 NOTIFICATIONS SCREEN (NEW)
+   ============================================================== */
+Screens.notifications = {
+  render(){
+    const list = state.notifications || [];
+    return `
+    ${ovHead('Notifications', { 
+      right: list.length > 0 ? `<button class="icon-btn" id="notifClear" style="color:var(--danger)">${icon('trash')}</button>` : '' 
+    })}
+    <div class="ov-body">
+      ${!list.length 
+        ? emptyHTML('কোনো Notification নেই', 'নতুন কোনো নোটিশ পাওয়া যায়নি।', 'bell')
+        : list.map(n=>`
+          <div class="card" style="padding:14px;margin-bottom:10px;border-left:4px solid var(--blue)">
+            <div style="font-size:14px;font-weight:700;margin-bottom:6px">${esc(n.title||'Notice')}</div>
+            <div class="muted small" style="line-height:1.6;margin-bottom:8px">${esc(n.message||n.body||'')}</div>
+            <div class="tiny muted" style="text-align:right">${esc(fmtDate(n.createdAt))}</div>
+          </div>`).join('')}
+    </div>`;
+  },
+  mount(el){
+    // ইউজার নোটিফিকেশন ওপেন করলে রেড ডটটি সরিয়ে ফেলা হবে
+    const bell = $('#btnNotifHome');
+    if(bell) bell.classList.remove('notif-dot');
+
+    const clearBtn = el.querySelector('#notifClear');
+    if(clearBtn){
+      clearBtn.addEventListener('click', async ()=>{
+        if(!confirm('সব Notification মুছে ফেলতে চান?')) return;
+        try{
+          await Data.clearAllNotifications();
+          pop();
+          toast('Notification মুছে ফেলা হয়েছে।','ok');
+        }catch(e){ toast('মুছে ফেলা যায়নি।','err'); }
+      });
+    }
+  }
+};
+
+/* ==============================================================
+   HISTORY & NOTIFICATIONS
+   ============================================================== */
+let historyTab = 'shopping';
+function setHistoryTab(kind){
+  historyTab = kind;
+  $$('#histTabs .tab').forEach(t=>t.classList.toggle('active', t.dataset.htab===kind));
+  renderHistory();
+}
+$('#histTabs').addEventListener('click', e=>{ const t = e.target.closest('[data-htab]'); if(t) setHistoryTab(t.dataset.htab); });
+
+async function refreshHistory(){
+  if(!state.user) return;
+  const list = $('#histList'); if(!list) return;
+  list.innerHTML = `<div class="skeleton" style="height:80px;margin-bottom:10px"></div><div class="skeleton" style="height:80px;margin-bottom:10px"></div><div class="skeleton" style="height:80px"></div>`;
+  try{
+    await Data.loadHistory(state.user.uid);
+    renderHistory();
+  }catch(e){ list.innerHTML = emptyHTML('লোড করা যায়নি','পুনরায় চেষ্টা করুন।','clock'); }
+}
+
+function renderHistory(){
+  const box = $('#histList'); if(!box) return;
+  const items = state.history[historyTab] || [];
+  if(!items.length){
+    box.innerHTML = emptyHTML('কোনো History নেই', 'এখনো কোনো লেনদেন হয়নি।', 'clock');
+    return;
+  }
+  box.innerHTML = items.map(h=>{
+    const title = h.title || h.product?.name || h.offer?.title || h.type || 'Order';
+    const amount = h.amount || h.total || h.totalPayable || 0;
+    const date = fmtDate(h.createdAt);
+    const st = h.status || 'pending';
+    return `<div class="card" style="padding:14px;margin-bottom:10px">
+      <div class="row" style="justify-content:space-between;margin-bottom:8px">
+        <div style="font-size:14px;font-weight:700;flex:1;min-width:0" class="ellipsis">${esc(title)}</div>
+        ${statusBadge(st)}
+      </div>
+      <div class="row" style="justify-content:space-between">
+        <span class="muted small">${esc(date)}</span>
+        <span style="font-weight:800;color:var(--blue)">${money(amount)}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+$('#histRefresh').addEventListener('click', refreshHistory);
+$('#histClearAll').addEventListener('click', async ()=>{
+  if(!state.history[historyTab]?.length){ toast('History খালি।'); return; }
+  if(!confirm('সব History মুছে ফেলতে চান?')) return;
+  try{ await Data.clearAllHistory(historyTab); renderHistory(); toast('History মুছে ফেলা হয়েছে।','ok'); }catch(e){ toast('মুছে ফেলা যায়নি।','err'); }
+});
+
+/* ==============================================================
+   PROFILE
+   ============================================================== */
+function renderProfile(){
+  const p = state.profile || {};
+  const av = $('#profAvatar'); if(av) av.innerHTML = avatarHTML(p);
+  const pn = $('#profName'); if(pn) pn.textContent = p.name || 'User';
+  const pe = $('#profEmail'); if(pe) pe.textContent = p.email || '—';
+  const pp = $('#profPhone'); if(pp) pp.textContent = p.phone || '—';
+  paintBalance();
+  const sw = $('#themeSwitch'); if(sw) sw.classList.toggle('on', state.theme==='dark');
+}
+
+$('#pLogout').addEventListener('click', async ()=>{
+  if(!confirm('Logout করতে চান?')) return;
+  try{ await signOut(auth); }catch(e){ toast('Logout ব্যর্থ।','err'); }
+});
+
+$('#themeSwitch').addEventListener('click', async ()=>{
+  const next = state.theme==='dark' ? 'light' : 'dark';
+  applyTheme(next);
+  if(state.user){ try{ await Data.updateProfile(state.user.uid, { theme: next }); }catch(e){} }
+});
+
+$('#pUpdateProfile').addEventListener('click', ()=>push('updateProfile'));
+Screens.updateProfile = {
+  render(){
+    const p = state.profile || {};
+    return `
+    ${ovHead('Update Profile')}
+    <div class="ov-body">
+      <div class="field-label">Full Name</div>
+      <div class="field">${icon('user')}<input id="upName" type="text" value="${esc(p.name||'')}" /></div>
+      <div class="field-label">Phone</div>
+      <div class="field">${icon('phone')}<input id="upPhone" type="tel" value="${esc(p.phone||'')}" /></div>
+      <div id="upErr" class="err-text hidden"></div>
+    </div>
+    <div class="ov-foot"><button class="btn" id="upSave">Save</button></div>`;
+  },
+  mount(el){
+    el.querySelector('#upSave').addEventListener('click', async (e)=>{
+      const name = el.querySelector('#upName').value.trim();
+      const phone = el.querySelector('#upPhone').value.trim();
+      const err = el.querySelector('#upErr'); err.classList.add('hidden');
+      if(!name){ err.textContent='Name দিন।'; err.classList.remove('hidden'); return; }
+      busy(e.currentTarget, true);
+      try{
+        await Data.updateProfile(state.user.uid, { name, phone });
+        state.profile.name = name; state.profile.phone = phone;
+        renderProfile(); renderHome();
+        toast('Profile আপডেট হয়েছে।','ok');
+        pop();
+      }catch(ex){ toast('আপডেট ব্যর্থ।','err'); }
+      finally{ busy(e.currentTarget, false); }
+    });
+  }
+};
+
+$('#pChangePass').addEventListener('click', ()=>push('changePass'));
+Screens.changePass = {
+  render(){
+    return `
+    ${ovHead('Change Password')}
+    <div class="ov-body">
+      <div class="field-label">Current Password</div>
+      <div class="field">${icon('lock')}<input id="cpOld" type="password" /></div>
+      <div class="field-label">New Password</div>
+      <div class="field">${icon('lock')}<input id="cpNew" type="password" /></div>
+      <div class="field-label">Confirm New Password</div>
+      <div class="field">${icon('lock')}<input id="cpNew2" type="password" /></div>
+      <div id="cpErr" class="err-text hidden"></div>
+    </div>
+    <div class="ov-foot"><button class="btn" id="cpSave">Update Password</button></div>`;
+  },
+  mount(el){
+    el.querySelector('#cpSave').addEventListener('click', async (e)=>{
+      const old = el.querySelector('#cpOld').value;
+      const n1 = el.querySelector('#cpNew').value;
+      const n2 = el.querySelector('#cpNew2').value;
+      const err = el.querySelector('#cpErr'); err.classList.add('hidden');
+      if(!old || !n1 || !n2){ err.textContent='সব ফিল্ড পূরণ করুন।'; err.classList.remove('hidden'); return; }
+      if(n1.length < 6){ err.textContent='নতুন Password কমপক্ষে ৬ অক্ষর।'; err.classList.remove('hidden'); return; }
+      if(n1 !== n2){ err.textContent='নতুন Password মিলছে না।'; err.classList.remove('hidden'); return; }
+      busy(e.currentTarget, true);
+      try{
+        const cred = EmailAuthProvider.credential(state.user.email, old);
+        await reauthenticateWithCredential(state.user, cred);
+        await updatePassword(state.user, n1);
+        toast('Password আপডেট হয়েছে।','ok');
+        pop();
+      }catch(ex){ err.textContent = authError(ex.code); err.classList.remove('hidden'); }
+      finally{ busy(e.currentTarget, false); }
+    });
+  }
+};
+
+$('#pProfilePic').addEventListener('click', ()=>$('#profilePicInput').click());
+$('#profilePicInput').addEventListener('change', async (e)=>{
+  const file = e.target.files[0]; if(!file) return;
+  if(file.size > 2*1024*1024){ toast('ছবি ২MB এর কম হতে হবে।','err'); return; }
+  const reader = new FileReader();
+  reader.onload = async (ev)=>{
+    const dataUrl = ev.target.result;
+    try{
+      await Data.updateProfile(state.user.uid, { photoURL: dataUrl });
+      state.profile.photoURL = dataUrl;
+      renderProfile(); renderHome();
+      toast('Profile Picture আপডেট হয়েছে।','ok');
+    }catch(ex){ toast('আপডেট ব্যর্থ।','err'); }
+  };
+  reader.readAsDataURL(file);
+  e.target.value = '';
+});
+
+/* ==============================================================
+   SUPPORT
+   ============================================================== */
+function openSupport(){
+  push('support');
+}
+Screens.support = {
+  render(){
+    const s = state.support || {};
+    const phone = s.phone || s.whatsapp || '';
+    const whatsapp = s.whatsapp || '';
+    const email = s.email || '';
+    return `
+    ${ovHead('Live Support')}
+    <div class="ov-body">
+      <div style="text-align:center;padding:20px 0 30px">
+        <div style="width:84px;height:84px;border-radius:28px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;margin:0 auto 16px">
+          ${icon('support','ic-lg')}
+        </div>
+        <h2 style="margin:0 0 6px;font-size:19px;font-weight:800">How can we help?</h2>
+        <p class="muted small" style="margin:0">আমরা ২৪/৭ আপনার সেবায় প্রস্তুত।</p>
+      </div>
+      ${phone ? `<a href="tel:${esc(phone)}" class="lrow" style="text-decoration:none">
+        <div class="li">${icon('phone','ic-sm')}</div>
+        <div class="grow"><div class="lt">Call Us</div><div class="ls">${esc(phone)}</div></div>
+      </a>` : ''}
+      ${whatsapp ? `<a href="https://wa.me/${esc(whatsapp.replace(/[^\d]/g,''))}" target="_blank" rel="noopener" class="lrow" style="text-decoration:none">
+        <div class="li" style="background:rgba(37,211,102,.15);color:#25D366">${icon('support','ic-sm')}</div>
+        <div class="grow"><div class="lt">WhatsApp</div><div class="ls">${esc(whatsapp)}</div></div>
+      </a>` : ''}
+      ${email ? `<a href="mailto:${esc(email)}" class="lrow" style="text-decoration:none">
+        <div class="li">${icon('mail','ic-sm')}</div>
+        <div class="grow"><div class="lt">Email</div><div class="ls">${esc(email)}</div></div>
+      </a>` : ''}
+      ${!phone && !whatsapp && !email ? `<div class="warn-box">Admin Panel থেকে Support Information Configure করা হয়নি।</div>` : ''}
+    </div>`;
+  }
+};
+
+$('#homeAddBalance').addEventListener('click', openAddBalance);
+$('#profAddBalance').addEventListener('click', openAddBalance);
+
+/* 🎯 NOTIFICATION TRIGGER */
+$('#btnNotifHome').addEventListener('click', async ()=>{
+  showLoader(true);
+  try {
+    await Data.loadNotifications(state.user.uid);
+    push('notifications');
+  } catch(e) {
+    toast('নোটিফিকেশন লোড করা যায়নি', 'err');
+  } finally {
+    showLoader(false);
+  }
+});
+
+/* PushState Back Handler */
+window.addEventListener('popstate', (e)=>{
+  if(stack.length > 0){ pop(); }
+});
+
+/* Close overlays on load if any */
+window.addEventListener('load', ()=>{
+  if(location.hash === '#overlay') history.replaceState(null, '', location.pathname);
+});
+
+</script>
+</body>
+</html>
